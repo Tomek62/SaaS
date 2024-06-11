@@ -6,9 +6,9 @@ import { Metadata } from "next";
 import { cn } from "@/lib/utils";
 
 const title =
-  "Platforms Starter Kit – The all-in-one starter kit for building multi-tenant applications.";
+  "FoodPoint.io - L'application pour créer votre site de commande en quelques clics.";
 const description =
-  "The Platforms Starter Kit is a full-stack Next.js app with multi-tenancy and custom domain support. Built with Next.js App Router, Vercel Postgres and the Vercel Domains API.";
+  "FoodPoint.io est un service pour les petits restaurateurs leur permettant de créer un site de commande en ligne et click&collect facilement, et en quelques minutes, pour développer leur business.";
 const image = "https://vercel.pub/thumbnail.png";
 
 export const metadata: Metadata = {
@@ -36,7 +36,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="fr" suppressHydrationWarning>
       <body className={cn(cal.variable, inter.variable)}>
         <Providers>
           {children}
