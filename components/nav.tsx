@@ -3,17 +3,20 @@
 import Link from "next/link";
 import {
   ArrowLeft,
+  AreaChart,
   BarChart3,
   Edit3,
   Globe,
   Layout,
   LayoutDashboard,
-  Megaphone,
   Menu,
   Newspaper,
   Settings,
+  FacebookIcon,
   FileCode,
   Github,
+  History,
+  ScrollText,
 } from "lucide-react";
 import {
   useParams,
@@ -26,39 +29,14 @@ import Image from "next/image";
 
 const externalLinks = [
   {
-    name: "Read announcement",
+    name: "Votre site",
     href: "https://vercel.com/blog/platforms-starter-kit",
-    icon: <Megaphone width={18} />,
+    icon: <Globe width={18} />,
   },
   {
-    name: "Star on GitHub",
+    name: "Facebook",
     href: "https://github.com/vercel/platforms",
-    icon: <Github width={18} />,
-  },
-  {
-    name: "Read the guide",
-    href: "https://vercel.com/guides/nextjs-multi-tenant-application",
-    icon: <FileCode width={18} />,
-  },
-  {
-    name: "View demo site",
-    href: "https://demo.vercel.pub",
-    icon: <Layout width={18} />,
-  },
-  {
-    name: "Deploy your own",
-    href: "https://vercel.com/templates/next.js/platforms-starter-kit",
-    icon: (
-      <svg
-        width={18}
-        viewBox="0 0 76 76"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="py-1 text-black dark:text-white"
-      >
-        <path d="M37.5274 0L75.0548 65H0L37.5274 0Z" fill="currentColor" />
-      </svg>
-    ),
+    icon: <FacebookIcon width={18} />,
   },
 ];
 
@@ -97,7 +75,7 @@ export default function Nav({ children }: { children: ReactNode }) {
           icon: <BarChart3 width={18} />,
         },
         {
-          name: "Settings",
+          name: "Paramétres",
           href: `/site/${id}/settings`,
           isActive: segments.includes("settings"),
           icon: <Settings width={18} />,
@@ -117,10 +95,30 @@ export default function Nav({ children }: { children: ReactNode }) {
           icon: <Edit3 width={18} />,
         },
         {
-          name: "Settings",
+          name: "Paramétres",
           href: `/post/${id}/settings`,
           isActive: segments.includes("settings"),
           icon: <Settings width={18} />,
+        },
+      ];
+    } else if (segments[0] === "orders") {
+      return [
+        {
+          name: "Back to All Posts",
+          href: "/",
+          icon: <ArrowLeft width={18} />,
+        },
+        {
+          name: "Suivi des commandes",
+          href: `/post/${id}`,
+          isActive: segments.length === 2,
+          icon: <Edit3 width={18} />,
+        },
+        {
+          name: "Historique des commandes",
+          href: `/post/${id}/settings`,
+          isActive: segments.includes("settings"),
+          icon: <History width={18} />,
         },
       ];
     }
@@ -132,13 +130,19 @@ export default function Nav({ children }: { children: ReactNode }) {
         icon: <LayoutDashboard width={18} />,
       },
       {
-        name: "Sites",
-        href: "/sites",
-        isActive: segments[0] === "sites",
-        icon: <Globe width={18} />,
+        name: "Commandes",
+        href: "/orders",
+        isActive: segments[0] === "orders",
+        icon: <ScrollText width={18} />,
       },
       {
-        name: "Settings",
+        name: "Statistiques",
+        href: "/sites",
+        isActive: segments[0] === "sites",
+        icon: <AreaChart width={18} />,
+      },
+      {
+        name: "Paramétres",
         href: "/settings",
         isActive: segments[0] === "settings",
         icon: <Settings width={18} />,
@@ -171,7 +175,7 @@ export default function Nav({ children }: { children: ReactNode }) {
       <div
         className={`transform ${
           showSidebar ? "w-full translate-x-0" : "-translate-x-full"
-        } fixed z-10 flex h-full flex-col justify-between border-r border-stone-200 bg-stone-100 p-4 transition-all dark:border-stone-700 dark:bg-stone-900 sm:w-60 sm:translate-x-0`}
+        } fixed z-10 flex h-full flex-col justify-between border-r border-stone-200 bg-stone-100 p-4 transition-all sm:w-60 sm:translate-x-0 dark:border-stone-700 dark:bg-stone-900`}
       >
         <div className="grid gap-2">
           <div className="flex items-center space-x-2 rounded-lg px-2 py-1.5">

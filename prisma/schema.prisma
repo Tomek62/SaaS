@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 datasource db {
   provider  = "postgresql"
   url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
@@ -14,7 +11,6 @@ generator client {
 model User {
   id            String    @id @default(cuid())
   name          String?
-  // if you are using Github OAuth, you can get rid of the username attribute (that is for Twitter OAuth)
   username      String?
   gh_username   String?
   email         String?   @unique
@@ -26,6 +22,8 @@ model User {
   sessions      Session[]
   sites         Site[]
   posts         Post[]
+  addresses     Address[]
+  orders        Order[]
 }
 
 model Account {
@@ -118,4 +116,104 @@ model Example {
   url           String?
   image         String? @db.Text
   imageBlurhash String? @db.Text
+}
+
+model Address {
+  id        String   @id @default(cuid())
+  street    String
+  city      String
+  state     String
+  zipCode   String
+  country   String
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  orders    Order[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Restaurant {
+  id          String    @id @default(cuid())
+  name        String
+  description String?
+  address     String
+  phoneNumber String?
+  email       String?
+  menus       Menu[]
+  orders      Order[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Menu {
+  id            String        @id @default(cuid())
+  name          String
+  description   String?
+  restaurantId  String
+  restaurant    Restaurant    @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+  products      Product[]
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  price       Float
+  imageUrl    String?
+  menuId      String
+  menu        Menu     @relation(fields: [menuId], references: [id], onDelete: Cascade)
+  orderItems  OrderItem[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Order {
+  id             String      @id @default(cuid())
+  status         OrderStatus @default(PENDING)
+  totalAmount    Float
+  userId         String
+  user           User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  restaurantId   String
+  restaurant     Restaurant  @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+  addressId      String
+  address        Address     @relation(fields: [addressId], references: [id], onDelete: Cascade)
+  orderItems     OrderItem[]
+  deliveryMethod DeliveryMethod
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+
+  @@index([userId])
+  @@index([restaurantId])
+  @@index([addressId])
+}
+
+model OrderItem {
+  id        String   @id @default(cuid())
+  quantity  Int
+  price     Float
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  orderId   String
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([productId])
+  @@index([orderId])
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+enum DeliveryMethod {
+  DELIVERY
+  CLICK_AND_COLLECT
+  DINE_IN
 }
