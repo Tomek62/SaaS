@@ -1,4 +1,8 @@
-const Nav = () => {
+import { getSession } from "@/lib/auth";
+
+export default async function Nav() {
+  const session = await getSession();
+
   return (
     <div className="navbar md:px-20 ">
       <div className="navbar-start">
@@ -53,7 +57,7 @@ const Nav = () => {
         </a>
       </div>
       <div className="navbar-center hidden items-center font-bold text-black  lg:flex">
-        <ul className="menu menu-horizontal text-lg px-1">
+        <ul className="menu menu-horizontal px-1 text-lg">
           <li>
             <a>Accueil</a>
           </li>
@@ -81,12 +85,23 @@ const Nav = () => {
           </li>
         </ul>
       </div>
-      <div className="navbar-end">
-        <a className="mr-6 cursor-pointer font-bold text-black">Login</a>
-        <a className="btn btn-sm text-light-brand-inverted">Sign Up</a>
-      </div>
+      {session ? (
+        <>
+        <a>{session.user.name}</a>
+        </>
+      ) : (
+        <>
+          <div className="navbar-end">
+            <a
+              className="mr-6 cursor-pointer font-bold text-black"
+              href="http://app.localhost:3000/login"
+            >
+              Login
+            </a>
+            <a className="btn btn-sm text-light-brand-inverted">Sign Up</a>
+          </div>
+        </>
+      )}
     </div>
   );
-};
-
-export default Nav;
+}

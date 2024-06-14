@@ -26,6 +26,7 @@ import {
 import { ReactNode, useEffect, useMemo, useState } from "react";
 import { getSiteFromPostId } from "@/lib/actions";
 import Image from "next/image";
+import { getSession } from "next-auth/react";
 
 const externalLinks = [
   {
@@ -47,12 +48,14 @@ export default function Nav({ children }: { children: ReactNode }) {
   const [siteId, setSiteId] = useState<string | null>();
 
   useEffect(() => {
+    
     if (segments[0] === "post" && id) {
       getSiteFromPostId(id).then((id) => {
         setSiteId(id);
       });
     }
   }, [segments, id]);
+
 
   const tabs = useMemo(() => {
     if (segments[0] === "site" && id) {
@@ -104,20 +107,20 @@ export default function Nav({ children }: { children: ReactNode }) {
     } else if (segments[0] === "orders") {
       return [
         {
-          name: "Back to All Posts",
+          name: "Retour à l'accueil",
           href: "/",
           icon: <ArrowLeft width={18} />,
         },
         {
           name: "Suivi des commandes",
-          href: `/post/${id}`,
-          isActive: segments.length === 2,
+          href: `/orders/online`,
+          isActive: "online" === segments[1],
           icon: <Edit3 width={18} />,
         },
         {
           name: "Historique des commandes",
-          href: `/post/${id}/settings`,
-          isActive: segments.includes("settings"),
+          href: `/orders/history`,
+          isActive: "history" === segments[1],
           icon: <History width={18} />,
         },
       ];
@@ -140,6 +143,12 @@ export default function Nav({ children }: { children: ReactNode }) {
         href: "/sites",
         isActive: segments[0] === "sites",
         icon: <AreaChart width={18} />,
+      },
+      {
+        name: "Votre site",
+        href: `/site/${id}`,
+        isActive: segments[0] === "site",
+        icon: <Settings width={18} />,
       },
       {
         name: "Paramétres",

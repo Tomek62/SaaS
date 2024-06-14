@@ -1,16 +1,13 @@
-import { Suspense } from "react";
-import Sites from "@/components/sites";
 import PlaceholderCard from "@/components/placeholder-card";
-import CreateSiteButton from "@/components/create-site-button";
-import CreateSiteModal from "@/components/modal/create-site";
+import { Suspense } from "react";
 
-export default function AllOrders({ params }: { params: { id: string } }) {
+export default function OnlineOrdersPage(){
   return (
     <div className="flex max-w-screen-xl flex-col space-y-12 p-8">
       <div className="flex flex-col space-y-6">
         <div className="flex items-center justify-between">
           <h1 className="font-cal text-3xl font-bold dark:text-white">
-            Espace Commandes
+            Commande en cours
           </h1>
         </div>
         <Suspense
@@ -22,8 +19,7 @@ export default function AllOrders({ params }: { params: { id: string } }) {
             </div>
           }
         >
-          {/* @ts-expect-error Server Component */}
-          <Sites siteId={decodeURIComponent(params.id)} />
+           <h1>Voici toutes les commandes en cous</h1>
         </Suspense>
       </div>
     </div>
