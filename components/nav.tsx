@@ -28,6 +28,8 @@ import { getSiteFromPostId } from "@/lib/actions";
 import Image from "next/image";
 import { getSession } from "next-auth/react";
 
+import { Site } from "@prisma/client";
+
 const externalLinks = [
   {
     name: "Votre site",
@@ -41,65 +43,46 @@ const externalLinks = [
   },
 ];
 
-export default function Nav({ children }: { children: ReactNode }) {
+export default function Nav({ children,site }: { children: ReactNode ,site:Site|null}) {
   const segments = useSelectedLayoutSegments();
-  const { id } = useParams() as { id?: string };
-
-  const [siteId, setSiteId] = useState<string | null>();
-
-  useEffect(() => {
-    
-    if (segments[0] === "post" && id) {
-      getSiteFromPostId(id).then((id) => {
-        setSiteId(id);
-      });
-    }
-  }, [segments, id]);
-
 
   const tabs = useMemo(() => {
-    if (segments[0] === "site" && id) {
+    if (segments[0] === "site") {
       return [
         {
           name: "Back to All Sites",
-          href: "/sites",
+          href: "/",
           icon: <ArrowLeft width={18} />,
         },
         {
-          name: "Posts",
-          href: `/site/${id}`,
-          isActive: segments.length === 2,
-          icon: <Newspaper width={18} />,
-        },
-        {
           name: "Analytics",
-          href: `/site/${id}/analytics`,
+          href: `/site/${site?.id}/analytics`,
           isActive: segments.includes("analytics"),
           icon: <BarChart3 width={18} />,
         },
         {
           name: "Paramétres",
-          href: `/site/${id}/settings`,
-          isActive: segments.includes("settings"),
+          href: `/site/${site?.id}/settings`,
+          isActive: "settings" === segments[1],
           icon: <Settings width={18} />,
         },
       ];
-    } else if (segments[0] === "post" && id) {
+    } else if (segments[0] === "post" && site?.id) {
       return [
         {
           name: "Back to All Posts",
-          href: siteId ? `/site/${siteId}` : "/sites",
+          href: site?.id ? `/site/${site?.id}` : "/sites",
           icon: <ArrowLeft width={18} />,
         },
         {
           name: "Editor",
-          href: `/post/${id}`,
+          href: `/post/${site?.id}`,
           isActive: segments.length === 2,
           icon: <Edit3 width={18} />,
         },
         {
           name: "Paramétres",
-          href: `/post/${id}/settings`,
+          href: `/post/${site?.id}/settings`,
           isActive: segments.includes("settings"),
           icon: <Settings width={18} />,
         },
@@ -146,7 +129,7 @@ export default function Nav({ children }: { children: ReactNode }) {
       },
       {
         name: "Votre site",
-        href: `/site/${id}`,
+        href: `/site/${site?.id}`,
         isActive: segments[0] === "site",
         icon: <Settings width={18} />,
       },
@@ -157,7 +140,7 @@ export default function Nav({ children }: { children: ReactNode }) {
         icon: <Settings width={18} />,
       },
     ];
-  }, [segments, id, siteId]);
+  }, [segments, site?.id]);
 
   const [showSidebar, setShowSidebar] = useState(false);
 

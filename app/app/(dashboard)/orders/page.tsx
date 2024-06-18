@@ -3,8 +3,12 @@ import Sites from "@/components/sites";
 import PlaceholderCard from "@/components/placeholder-card";
 import CreateSiteButton from "@/components/create-site-button";
 import CreateSiteModal from "@/components/modal/create-site";
+import Orders from "@/components/orders";
+import { getSession } from "next-auth/react";
+import { redirect } from "next/navigation";
 
-export default function AllOrders({ params }: { params: { id: string } }) {
+export default  function AllOrders({ params }: { params: { id: string } }) {
+  
   return (
     <div className="flex max-w-screen-xl flex-col space-y-12 p-8">
       <div className="flex flex-col space-y-6">
@@ -22,8 +26,7 @@ export default function AllOrders({ params }: { params: { id: string } }) {
             </div>
           }
         >
-          {/* @ts-expect-error Server Component */}
-          <Sites siteId={decodeURIComponent(params.id)} />
+          <Orders />
         </Suspense>
       </div>
     </div>

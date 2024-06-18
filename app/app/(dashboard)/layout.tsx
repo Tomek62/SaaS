@@ -1,11 +1,22 @@
-import { ReactNode, Suspense } from "react";
+import { ReactNode, Suspense, useEffect, useState } from "react";
 import Profile from "@/components/profile";
 import Nav from "@/components/nav";
+import { getSession } from "@/lib/auth";
+import prisma from "@/lib/prisma";
 
-export default function DashboardLayout({ children }: { children: ReactNode }) {
+export default async function DashboardLayout({ children }: { children: ReactNode }) {
+  const session = await getSession();
+  if (!session) {
+    return 0;
+  }
+  const site = await prisma.site.findUnique({
+    where: {
+      userId: session.user.id as string,
+    },
+  });
   return (
     <div>
-      <Nav>
+      <Nav site={site}>
         <Suspense fallback={<div>Loading...</div>}>
           <Profile />
         </Suspense>

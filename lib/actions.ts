@@ -28,11 +28,26 @@ export const createSite = async (formData: FormData) => {
       error: "Not authenticated",
     };
   }
+
   const name = formData.get("name") as string;
   const description = formData.get("description") as string;
   const subdomain = formData.get("subdomain") as string;
 
   try {
+    // Vérifiez si l'utilisateur a déjà un site
+    const existingSite = await prisma.site.findFirst({
+      where: {
+        userId: session.user.id,
+      },
+    });
+
+    if (existingSite) {
+      return {
+        error: "You already have a site. You cannot create more than one site.",
+      };
+    }
+
+    // Si aucun site n'existe, continuez avec la création du site
     const response = await prisma.site.create({
       data: {
         name,
@@ -45,9 +60,11 @@ export const createSite = async (formData: FormData) => {
         },
       },
     });
+
     await revalidateTag(
-      `${subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}-metadata`,
+      `${subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}-metadata`
     );
+
     return response;
   } catch (error: any) {
     if (error.code === "P2002") {
@@ -61,6 +78,7 @@ export const createSite = async (formData: FormData) => {
     }
   }
 };
+
 
 export const updateSite = withSiteAuth(
   async (formData: FormData, site: Site, key: string) => {

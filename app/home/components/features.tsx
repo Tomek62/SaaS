@@ -2,7 +2,8 @@ import { CheckCheck, TrendingUp, Clock } from "lucide-react";
 
 const Features = () => {
   return (
-    <section className="bg-light-brand-faint  py-20 px-10 lg:px-40">
+    <section className="bg-light-brand-faint  py-10 px-10 lg:px-40">
+      <h1 className="text-3xl font-bold text-center mb-10">Pourquoi nous ?</h1>
       <div className="gap-10 font-semibold md:flex md:text-xl">
         {/* Feature 1 */}
         <div className="card card-body flex flex-col items-center mb-5 bg-white md:mb-0  md:w-1/5">
