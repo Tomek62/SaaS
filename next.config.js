@@ -8,6 +8,7 @@ module.exports = {
     },
   },
   images: {
+    domains: ['x7wj5uqcchztaajw.public.blob.vercel-storage.com'],
     remotePatterns: [
       { hostname: "public.blob.vercel-storage.com" },
       { hostname: "res.cloudinary.com" },

@@ -42,6 +42,18 @@ export default async function SiteSettingsIndex({
         }}
         handleSubmit={updateSite}
       />
+      <Form
+        title="Réduction"
+        description="Ici vous pouvez ajouter une réduction pour votre site."
+        helpText="Include SEO-optimized keywords that you want to rank for."
+        inputAttrs={{
+          name: "description",
+          type: "text",
+          defaultValue: data?.description!,
+          placeholder: "A blog about really interesting things.",
+        }}
+        handleSubmit={updateSite}
+      />
 
       <DeleteSiteForm siteName={data?.name!} />
     </div>

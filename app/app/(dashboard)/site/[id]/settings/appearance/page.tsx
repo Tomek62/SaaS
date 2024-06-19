@@ -1,7 +1,6 @@
 import prisma from "@/lib/prisma";
 import Form from "@/components/form";
 import { updateSite } from "@/lib/actions";
-
 export default async function SiteSettingsAppearance({
   params,
 }: {
@@ -38,9 +37,31 @@ export default async function SiteSettingsAppearance({
         handleSubmit={updateSite}
       />
       <Form
+        title="Carte du restaurant"
+        description="Insérez votre carte ici pour générer automatiquement le contenu du site. Formts acceptés: .png, .jpg, .jpeg"
+        helpText="Taille max du fichier 50MB."
+        inputAttrs={{
+          name: "image",
+          type: "file",
+          defaultValue: data?.image!,
+        }}
+        handleSubmit={updateSite}
+      />
+      <Form
         title="Font"
-        description="The font for the heading text your site."
-        helpText="Please select a font."
+        description="Choisissez la police de votre site."
+        helpText="Veuillez sélectionner une police."
+        inputAttrs={{
+          name: "font",
+          type: "select",
+          defaultValue: data?.font!,
+        }}
+        handleSubmit={updateSite}
+      />
+      <Form
+        title="Couleurs"
+        description="Choisissez les couleurs de votre site."
+        helpText="Veuillez sélectionner une couleur."
         inputAttrs={{
           name: "font",
           type: "select",

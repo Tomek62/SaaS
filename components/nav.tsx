@@ -17,6 +17,7 @@ import {
   Github,
   History,
   ScrollText,
+  UtensilsCrossed,
 } from "lucide-react";
 import {
   useParams,
@@ -50,9 +51,15 @@ export default function Nav({ children,site }: { children: ReactNode ,site:Site|
     if (segments[0] === "site") {
       return [
         {
-          name: "Back to All Sites",
+          name: "Retour à l'accueil",
           href: "/",
           icon: <ArrowLeft width={18} />,
+        },
+        {
+          name: "Overview",
+          href: `/site/${site?.id}`,
+          isActive: segments.length === 2 && segments[1] === site?.id,
+          icon: <LayoutDashboard width={18} />,
         },
         {
           name: "Analytics",
@@ -63,7 +70,7 @@ export default function Nav({ children,site }: { children: ReactNode ,site:Site|
         {
           name: "Paramétres",
           href: `/site/${site?.id}/settings`,
-          isActive: "settings" === segments[1],
+          isActive: segments.includes("settings"),
           icon: <Settings width={18} />,
         },
       ];
@@ -131,7 +138,7 @@ export default function Nav({ children,site }: { children: ReactNode ,site:Site|
         name: "Votre site",
         href: `/site/${site?.id}`,
         isActive: segments[0] === "site",
-        icon: <Settings width={18} />,
+        icon: <UtensilsCrossed width={18} />,
       },
       {
         name: "Paramétres",

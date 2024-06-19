@@ -4,8 +4,6 @@ import Posts from "@/components/posts";
 import Link from "next/link";
 import PlaceholderCard from "@/components/placeholder-card";
 import OverviewSitesCTA from "@/components/overview-sites-cta";
-import IphoneMockup from "@/components/iphone-mockup";
-
 import CreateSiteButton from "@/components/create-site-button";
 import CreateSiteModal from "@/components/modal/create-site";
 import SiteCard from "@/components/site-card";

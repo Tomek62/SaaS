@@ -6,6 +6,7 @@ import { placeholderBlurhash, toDateString } from "@/lib/utils";
 import BlogCard from "@/components/blog-card";
 import { getPostsForSite, getSiteData } from "@/lib/fetchers";
 import Image from "next/image";
+import Nav from "./(webapp)/components/nav";
 
 export async function generateStaticParams() {
   const allSites = await prisma.site.findMany({
@@ -116,7 +117,7 @@ export default async function SiteHomePage({
               className="hidden dark:block"
             />
             <p className="font-title text-2xl text-stone-600 dark:text-stone-400">
-              No posts yet.
+              No posts yet. hello world
             </p>
           </div>
         )}

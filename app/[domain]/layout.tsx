@@ -1,12 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ReactNode } from "react";
-import CTA from "@/components/cta";
-import ReportAbuse from "@/components/report-abuse";
 import { notFound, redirect } from "next/navigation";
 import { getSiteData } from "@/lib/fetchers";
 import { fontMapper } from "@/styles/fonts";
 import { Metadata } from "next";
+import Nav from "./(webapp)/components/nav";
 
 export async function generateMetadata({
   params,
@@ -88,9 +87,9 @@ export default async function SiteLayout({
             <div className="inline-block h-8 w-8 overflow-hidden rounded-full align-middle">
               <Image
                 alt={data.name || ""}
-                height={40}
+                height={80}
                 src={data.logo || ""}
-                width={40}
+                width={80}
               />
             </div>
             <span className="ml-3 inline-block truncate font-title font-medium">
@@ -100,14 +99,10 @@ export default async function SiteLayout({
         </div>
       </div>
 
-      <div className="mt-20">{children}</div>
-
-      {domain == `demo.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}` ||
-      domain == `platformize.co` ? (
-        <CTA />
-      ) : (
-        <ReportAbuse />
-      )}
+      <div className="mt-20">
+        {children}
+        <Nav />
+      </div>
     </div>
   );
 }

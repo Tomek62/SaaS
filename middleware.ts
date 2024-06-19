@@ -62,7 +62,8 @@ export default async function middleware(req: NextRequest) {
   //Cette partie est à modifier pour rediriger vers la page d'accueil de votre site ("landing page par exemple")
   if (
     hostname === "localhost:3000" ||
-    hostname === process.env.NEXT_PUBLIC_ROOT_DOMAIN
+    hostname === process.env.NEXT_PUBLIC_ROOT_DOMAIN ||
+    hostname === "192.168.0.188:3000"
   ) {
     return NextResponse.rewrite(
       new URL(`/home${path === "/" ? "" : path}`, req.url),
