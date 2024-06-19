@@ -49,7 +49,9 @@ const Hero = () => {
           </div>
         </div>
         <div className="mt-16 flex lg:w-1/3">
-          <IphoneMockup children={<h1>Hi</h1>} />
+          <IphoneMockup>
+            <h1>Hi</h1>
+          </IphoneMockup>
         </div>
       </div>
     </div>

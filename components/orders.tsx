@@ -30,7 +30,7 @@ export default async function Orders({ limit }: { limit?: number }) {
     </div>
   ) : (
     <div className="mt-20 flex flex-col items-center space-x-4">
-      <h1 className="font-cal text-4xl">Aucune commande pour l'instant</h1>
+      <h1 className="font-cal text-4xl">Aucune commande pour l&apos;instant</h1>
       <Image
         alt="missing site"
         src="https://illustrations.popsy.co/gray/web-design.svg"
@@ -38,7 +38,7 @@ export default async function Orders({ limit }: { limit?: number }) {
         height={400}
       />
       <p className="text-lg text-stone-500">
-        Vous n'avez pas encore de commandes. Vite le premier client !!
+        Vous n&apos;avez pas encore de commandes. Vite le premier client !!
       </p>
     </div>
   );

@@ -43,7 +43,7 @@ const Features = () => {
           </h3>
           <p className="mb-4 text-center">
             Il est possible de changer son site à tout moment. La maintenance du
-            site est faite par nos soins, et il est possible d'appeler à tout
+            site est faite par nos soins, et il est possible d&apos;appeler à tout
             moment.
           </p>
           <button className="btn btn-primary bg-light-brand-emphasis text-light-brand-inverted">

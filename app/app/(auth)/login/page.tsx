@@ -19,7 +19,7 @@ export default function LoginPage() {
         Connectez-vous dès à présent à votre plateforme FoodPoint. <br />
         Vous pourrez accéder à vos commandes <br/> et les gérer en toute simplicité.
         <br />
-        Utilisez Facebook pour l'instant
+        Utilisez Facebook pour l&apos;instant
       </p>
 
       <div className="mx-auto mt-4 w-11/12 max-w-xs sm:w-full">
