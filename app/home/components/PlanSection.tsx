@@ -92,7 +92,7 @@ const PlanSection: React.FC = () => {
           Obtenez votre service en un instant
         </h1>
         <p className="py-6 text-light-content-strong">
-          Economisez jusqu'à 20% en prenant le forfait annuel.
+          Economisez jusqu&apos;à 20% en prenant le forfait annuel.
           <br /> Les 3 premiers mois sont satisfaits ou remboursés !
         </p>
         <div role="tablist" className="tabs-boxed tabs mx-auto md:w-1/4">

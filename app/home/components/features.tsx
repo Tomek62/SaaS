@@ -9,10 +9,10 @@ const Features = () => {
         <div className="card card-body flex flex-col items-center mb-5 bg-white md:mb-0  md:w-1/5">
           <h3 className="mb-4 flex items-center font-bold text-black">
             <CheckCheck className="mr-4 h-6 w-6" />
-            Simple d'utilisation
+            Simple d&apos;utilisation
           </h3>
           <p className="mb-4 text-center">
-            Il n'est pas nécessaire d'être développeur. En quelques clics, vous
+            Il n&apos;est pas nécessaire d&apos;être développeur. En quelques clics, vous
             pouvez créer votre site.
           </p>
           <button className="btn btn-primary bg-light-brand-emphasis text-light-brand-inverted">
@@ -27,7 +27,7 @@ const Features = () => {
             Suivi de votre activité
           </h3>
           <p className="mb-4 text-center">
-            Le site est accompagné d'un suivi des commandes permettant d'avoir
+            Le site est accompagné d&apos;un suivi des commandes permettant d&apos;avoir
             un œil sur votre business.
           </p>
           <button className="btn btn-primary bg-light-brand-emphasis text-light-brand-inverted">

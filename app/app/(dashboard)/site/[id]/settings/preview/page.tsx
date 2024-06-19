@@ -16,7 +16,9 @@ export default async function SiteSettingsPreview({
 
   return (
     <div className="flex flex-col space-y-6">
-      <IphoneMockup children={<div>Preview</div>} />
+      <IphoneMockup>
+        <h1 className="text-3xl font-bold text-center mb-10">Pourquoi nous ?</h1>
+      </IphoneMockup>
     </div>
   );
 }
