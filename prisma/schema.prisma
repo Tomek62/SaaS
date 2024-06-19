@@ -22,7 +22,7 @@ model User {
   updatedAt     DateTime  @updatedAt
   accounts      Account[]
   sessions      Session[]
-  site          Site?      @relation(fields: [siteId], references: [id], onDelete: Cascade)
+  site          Site?     @relation(fields: [siteId], references: [id], onDelete: Cascade)
   posts         Post[]
   addresses     Address[]
   orders        Order[]
@@ -91,23 +91,23 @@ model Post {
 }
 
 model Site {
-  id            String   @id @default(cuid())
-  name          String?
-  description   String?  @db.Text
-  logo          String?  @default("https://public.blob.vercel-storage.com/eEZHAoPTOBSYGBE3/JRajRyC-PhBHEinQkupt02jqfKacBVHLWJq7Iy.png") @db.Text
-  font          String   @default("font-cal")
-  primaryColor  String   @default("#0000")
-  secondaryColor String  @default("#FFFF")
-  image         String?  @default("https://public.blob.vercel-storage.com/eEZHAoPTOBSYGBE3/hxfcV5V-eInX3jbVUhjAt1suB7zB88uGd1j20b.png") @db.Text
-  imageBlurhash String?  @default("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAhCAYAAACbffiEAAAACXBIWXMAABYlAAAWJQFJUiTwAAABfUlEQVR4nN3XyZLDIAwE0Pz/v3q3r55JDlSBplsIEI49h76k4opexCK/juP4eXjOT149f2Tf9ySPgcjCc7kdpBTgDPKByKK2bTPFEdMO0RDrusJ0wLRBGCIuelmWJAjkgPGDSIQEMBDCfA2CEPM80+Qwl0JkNxBimiaYGOTUlXYI60YoehzHJDEm7kxjV3whOQTD3AaCuhGKHoYhyb+CBMwjIAFz647kTqyapdV4enGINuDJMSScPmijSwjCaHeLcT77C7EC0C1ugaCTi2HYfAZANgj6Z9A8xY5eiYghDMNQBJNCWhASot0jGsSCUiHWZcSGQjaWWCDaGMOWnsCcn2QhVkRuxqqNxMSdUSElCDbp1hbNOsa6Ugxh7xXauF4DyM1m5BLtCylBXgaxvPXVwEoOBjeIFVODtW74oj1yBQah3E8tyz3SkpolKS9Geo9YMD1QJR1Go4oJkgO1pgbNZq0AOUPChyjvh7vlXaQa+X1UXwKxgHokB2XPxbX+AnijwIU4ahazAAAAAElFTkSuQmCC") @db.Text
-  subdomain     String?  @unique
-  customDomain  String?  @unique
-  message404    String?  @default("Blimey! You've found a page that doesn't exist.") @db.Text
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-  user          User?   
-  userId        String?  @unique
-  posts         Post[]
+  id             String   @id @default(cuid())
+  name           String?
+  description    String?  @db.Text
+  logo           String?  @default("https://public.blob.vercel-storage.com/eEZHAoPTOBSYGBE3/JRajRyC-PhBHEinQkupt02jqfKacBVHLWJq7Iy.png") @db.Text
+  font           String   @default("font-cal")
+  primaryColor   String   @default("#0000")
+  secondaryColor String   @default("#FFFF")
+  image          String?  @default("https://public.blob.vercel-storage.com/eEZHAoPTOBSYGBE3/hxfcV5V-eInX3jbVUhjAt1suB7zB88uGd1j20b.png") @db.Text
+  imageBlurhash  String?  @default("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAhCAYAAACbffiEAAAACXBIWXMAABYlAAAWJQFJUiTwAAABfUlEQVR4nN3XyZLDIAwE0Pz/v3q3r55JDlSBplsIEI49h76k4opexCK/juP4eXjOT149f2Tf9ySPgcjCc7kdpBTgDPKByKK2bTPFEdMO0RDrusJ0wLRBGCIuelmWJAjkgPGDSIQEMBDCfA2CEPM80+Qwl0JkNxBimiaYGOTUlXYI60YoehzHJDEm7kxjV3whOQTD3AaCuhGKHoYhyb+CBMwjIAFz647kTqyapdV4enGINuDJMSScPmijSwjCaHeLcT77C7EC0C1ugaCTi2HYfAZANgj6Z9A8xY5eiYghDMNQBJNCWhASot0jGsSCUiHWZcSGQjaWWCDaGMOWnsCcn2QhVkRuxqqNxMSdUSElCDbp1hbNOsa6Ugxh7xXauF4DyM1m5BLtCylBXgaxvPXVwEoOBjeIFVODtW74oj1yBQah3E8tyz3SkpolKS9Geo9YMD1QJR1Go4oJkgO1pgbNZq0AOUPChyjvh7vlXaQa+X1UXwKxgHokB2XPxbX+AnijwIU4ahazAAAAAElFTkSuQmCC") @db.Text
+  subdomain      String?  @unique
+  customDomain   String?  @unique
+  message404     String?  @default("Blimey! You've found a page that doesn't exist.") @db.Text
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  user           User?
+  userId         String?  @unique
+  posts          Post[]
 
   @@index([userId])
 }
@@ -137,7 +137,7 @@ model Address {
 }
 
 model Restaurant {
-  id          String    @id @default(cuid())
+  id          String   @id @default(cuid())
   name        String
   description String?
   address     String
@@ -145,48 +145,48 @@ model Restaurant {
   email       String?
   menus       Menu[]
   orders      Order[]
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 model Menu {
-  id            String        @id @default(cuid())
-  name          String
-  description   String?
-  restaurantId  String
-  restaurant    Restaurant    @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
-  products      Product[]
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
+  id           String     @id @default(cuid())
+  name         String
+  description  String?
+  restaurantId String
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+  products     Product[]
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
 }
 
 model Product {
-  id          String   @id @default(cuid())
+  id          String      @id @default(cuid())
   name        String
   description String?
   price       Float
   imageUrl    String?
   menuId      String
-  menu        Menu     @relation(fields: [menuId], references: [id], onDelete: Cascade)
+  menu        Menu        @relation(fields: [menuId], references: [id], onDelete: Cascade)
   orderItems  OrderItem[]
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
 }
 
 model Order {
-  id             String      @id @default(cuid())
-  status         OrderStatus @default(PENDING)
+  id             String         @id @default(cuid())
+  status         OrderStatus    @default(PENDING)
   totalAmount    Float
   userId         String
-  user           User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user           User           @relation(fields: [userId], references: [id], onDelete: Cascade)
   restaurantId   String
-  restaurant     Restaurant  @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+  restaurant     Restaurant     @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
   addressId      String
-  address        Address     @relation(fields: [addressId], references: [id], onDelete: Cascade)
+  address        Address        @relation(fields: [addressId], references: [id], onDelete: Cascade)
   orderItems     OrderItem[]
   deliveryMethod DeliveryMethod
-  createdAt      DateTime    @default(now())
-  updatedAt      DateTime    @updatedAt
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
 
   @@index([userId])
   @@index([restaurantId])

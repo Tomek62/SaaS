@@ -1,5 +1,6 @@
 "use client";
 
+import { SketchPicker } from "react-color"; // Importer le sélecteur de couleur
 import LoadingDots from "@/components/icons/loading-dots";
 import { cn } from "@/lib/utils";
 import { useSession } from "next-auth/react";
@@ -10,6 +11,7 @@ import DomainStatus from "./domain-status";
 import DomainConfiguration from "./domain-configuration";
 import Uploader from "./uploader";
 import va from "@vercel/analytics";
+import { useState } from "react"; // Importer useState
 
 export default function Form({
   title,
@@ -24,7 +26,7 @@ export default function Form({
   inputAttrs: {
     name: string;
     type: string;
-    defaultValue: string;
+    defaultValue: any;
     placeholder?: string;
     maxLength?: number;
     pattern?: string;
@@ -34,6 +36,13 @@ export default function Form({
   const { id } = useParams() as { id?: string };
   const router = useRouter();
   const { update } = useSession();
+  const [primaryColor, setPrimaryColor] = useState(
+    inputAttrs.defaultValue.primaryColor || "#ffffff",
+  );
+  const [secondaryColor, setSecondaryColor] = useState(
+    inputAttrs.defaultValue.secondaryColor || "#000000",
+  );
+
   return (
     <form
       action={async (data: FormData) => {
@@ -45,6 +54,8 @@ export default function Form({
         ) {
           return;
         }
+        data.set("primaryColor", primaryColor);
+        data.set("secondaryColor", secondaryColor);
         handleSubmit(data, id, inputAttrs.name).then(async (res: any) => {
           if (res.error) {
             toast.error(res.error);
@@ -83,6 +94,24 @@ export default function Form({
               <option value="font-lora">Lora</option>
               <option value="font-work">Work Sans</option>
             </select>
+          </div>
+        ) : inputAttrs.name === "primaryColor" ||
+          inputAttrs.name === "secondaryColor" ? (
+          <div>
+            <label className="block text-sm font-medium text-stone-700 dark:text-stone-300">
+              Primary Color
+            </label>
+            <SketchPicker
+              color={primaryColor}
+              onChangeComplete={(color) => setPrimaryColor(color.hex)}
+            />
+            <label className="mt-4 block text-sm font-medium text-stone-700 dark:text-stone-300">
+              Secondary Color
+            </label>
+            <SketchPicker
+              color={secondaryColor}
+              onChangeComplete={(color) => setSecondaryColor(color.hex)}
+            />
           </div>
         ) : inputAttrs.name === "subdomain" ? (
           <div className="flex w-full max-w-md">
