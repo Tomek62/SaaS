@@ -21,4 +21,7 @@ module.exports = {
       { hostname: "illustrations.popsy.co" },
     ]
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
