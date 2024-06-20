@@ -84,7 +84,7 @@ const PlanSection: React.FC = () => {
   };
 
   return (
-    <section className="text-center pb-28">
+    <section className="text-center pb-48">
       <div className="flex flex-col px-5">
         <h1 className="text-4xl font-bold  text-black lg:text-5xl">
           Choisissez votre{" "}

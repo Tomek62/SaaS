@@ -1,10 +1,10 @@
 import { getSession } from "@/lib/auth";
-import { Dialog } from "@headlessui/react";
-import { Menu, ArrowBigDownDash } from "lucide-react";
+import { Dialog,DialogPanel } from "@headlessui/react";
+import { Menu, X} from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
-export default async function Nav() {
+export default function Nav() {
   const navigation = [
     { name: "Accueil", href: "#" },
     { name: "Demo", href: "#" },
@@ -20,8 +20,7 @@ export default async function Nav() {
             >
               <div className="flex lg:flex-1">
                 <a href="#" className="-m-1.5 p-1.5">
-                  <span className="sr-only">Your Company</span>
-                <Image src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" width={100} height={100} alt="logo"/>
+                 <h1 className="text-black text-2xl font-black"> Food<span className="text-light-brand-emphasis">Point</span></h1> 
                 </a>
               </div>
               <div className="flex lg:hidden">
@@ -60,11 +59,10 @@ export default async function Nav() {
               onClose={setMobileMenuOpen}
             >
               <div className="fixed inset-0 z-50" />
-
+              <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
               <div className="flex items-center justify-between">
                 <a href="#" className="-m-1.5 p-1.5">
-                  <span className="sr-only">Your Company</span>
-                  <Image src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" width={100} height={100} alt="logo"/>
+                <h1 className="text-black text-2xl font-black"> Food<span className="text-light-brand-emphasis">Point</span></h1>
                 </a>
                 <button
                   type="button"
@@ -72,7 +70,7 @@ export default async function Nav() {
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   <span className="sr-only">Close menu</span>
-                  <ArrowBigDownDash size={24} />
+                  <X size={24} />
                 </button>
               </div>
               <div className="mt-6 flow-root">
@@ -98,6 +96,7 @@ export default async function Nav() {
                   </div>
                 </div>
               </div>
+              </DialogPanel>
             </Dialog>
           </header>
     // <div className="navbar md:px-20 ">
