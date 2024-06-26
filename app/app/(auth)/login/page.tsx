@@ -29,7 +29,7 @@ export default function LoginPage() {
           }
         >
           <LoginButton provider="google"/>
-          <LoginButton provider="facebook"/>
+          <LoginButton provider="github"/>
         </Suspense>
       </div>
     </div>

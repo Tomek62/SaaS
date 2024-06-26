@@ -35,7 +35,7 @@ export default function LoginButton({provider}:{provider:string}) {
       disabled={loading}
       onClick={() => {
         setLoading(true);
-        signIn("github"); //a modifier plus tard avec provider
+        signIn(provider); //a modifier plus tard avec provider
       }}
       className={`${
         loading

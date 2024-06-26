@@ -53,6 +53,7 @@ export const createSite = async (formData: FormData) => {
         name,
         description,
         subdomain,
+        userId: session.user.id,
         user: {
           connect: {
             id: session.user.id,
@@ -62,7 +63,7 @@ export const createSite = async (formData: FormData) => {
     });
 
     await revalidateTag(
-      `${subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}-metadata`
+      `${subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}-metadata`,
     );
 
     return response;
@@ -79,11 +80,10 @@ export const createSite = async (formData: FormData) => {
   }
 };
 
-
 export const updateSite = withSiteAuth(
   async (formData: FormData, site: Site, key: string) => {
     const value = formData.get(key) as string;
-
+   console.log(value)
     try {
       let response;
 
@@ -198,6 +198,7 @@ export const updateSite = withSiteAuth(
         "Updated site data! Revalidating tags: ",
         `${site.subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}-metadata`,
         `${site.customDomain}-metadata`,
+        response,
       );
       await revalidateTag(
         `${site.subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}-metadata`,

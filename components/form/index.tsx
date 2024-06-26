@@ -36,12 +36,6 @@ export default function Form({
   const { id } = useParams() as { id?: string };
   const router = useRouter();
   const { update } = useSession();
-  const [primaryColor, setPrimaryColor] = useState(
-    inputAttrs.defaultValue.primaryColor || "#ffffff",
-  );
-  const [secondaryColor, setSecondaryColor] = useState(
-    inputAttrs.defaultValue.secondaryColor || "#000000",
-  );
 
   return (
     <form
@@ -54,8 +48,6 @@ export default function Form({
         ) {
           return;
         }
-        data.set("primaryColor", primaryColor);
-        data.set("secondaryColor", secondaryColor);
         handleSubmit(data, id, inputAttrs.name).then(async (res: any) => {
           if (res.error) {
             toast.error(res.error);
@@ -94,24 +86,6 @@ export default function Form({
               <option value="font-lora">Lora</option>
               <option value="font-work">Work Sans</option>
             </select>
-          </div>
-        ) : inputAttrs.name === "primaryColor" ||
-          inputAttrs.name === "secondaryColor" ? (
-          <div>
-            <label className="block text-sm font-medium text-stone-700 dark:text-stone-300">
-              Primary Color
-            </label>
-            <SketchPicker
-              color={primaryColor}
-              onChangeComplete={(color) => setPrimaryColor(color.hex)}
-            />
-            <label className="mt-4 block text-sm font-medium text-stone-700 dark:text-stone-300">
-              Secondary Color
-            </label>
-            <SketchPicker
-              color={secondaryColor}
-              onChangeComplete={(color) => setSecondaryColor(color.hex)}
-            />
           </div>
         ) : inputAttrs.name === "subdomain" ? (
           <div className="flex w-full max-w-md">

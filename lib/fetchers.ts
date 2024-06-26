@@ -14,7 +14,7 @@ export async function getSiteData(domain: string) {
     async () => {
       return prisma.site.findUnique({
         where: subdomain ? { subdomain } : { customDomain: domain },
-        include: { user: true },
+        include: { user: true ,restaurant:true},
       });
     },
     [`${domain}-metadata`],
@@ -25,7 +25,7 @@ export async function getSiteData(domain: string) {
   )();
 }
 
-export async function getSite() { 
+export async function getSite() {
   const session = await getSession();
   if (!session) {
     redirect("/login");
@@ -63,6 +63,44 @@ export async function getSiteIdForCurrentUser() {
   return user.siteId;
 }
 
+export async function getMenusForSite(domain: string) {
+  const subdomain = domain.endsWith(`.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`)
+    ? domain.replace(`.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`, "")
+    : null;
+
+  return await unstable_cache(
+    async () => {
+      return prisma.site.findUnique({
+        where: subdomain ? { subdomain } : { customDomain: domain },
+        select: {
+          restaurant: {
+            select: {
+              menus: {
+                select: {
+                  name: true,
+                  description: true,
+                  products: {
+                    select: {
+                      name: true,
+                      description: true,
+                      price: true,
+                      imageUrl: true,
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      });
+    },
+    [`${domain}-menus`],
+    {
+      revalidate: 900,
+      tags: [`${domain}-menus`],
+    },
+  )();
+}
 export async function getPostsForSite(domain: string) {
   const subdomain = domain.endsWith(`.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`)
     ? domain.replace(`.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`, "")

@@ -1,6 +1,3 @@
-import Image from "next/image";
-import heroImage from "../../../public/Take Away-pana.png";
-import { Play } from "lucide-react";
 import IphoneMockup from "@/components/iphone-mockup";
 
 const Hero = () => {

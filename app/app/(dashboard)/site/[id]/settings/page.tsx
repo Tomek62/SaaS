@@ -54,7 +54,6 @@ export default async function SiteSettingsIndex({
         }}
         handleSubmit={updateSite}
       />
-
       <DeleteSiteForm siteName={data?.name!} />
     </div>
   );

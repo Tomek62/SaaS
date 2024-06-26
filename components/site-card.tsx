@@ -15,14 +15,14 @@ export default async function SiteCard() {
   if (!session) {
     return redirect("/login");
   }
-  const site = await prisma.site.findUnique({
+  const site = await prisma.site.findFirst({
     where: {
       userId: session.user.id as string,
     },
   });
 
   const url = `${site?.subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`;
-  return (
+  return site ? (
     <div className="relative rounded-lg border border-stone-200 pb-10 shadow-md transition-all hover:shadow-xl dark:border-stone-700 dark:hover:border-white">
       <Link
         href={`/site/${site?.id}`}
@@ -68,5 +68,7 @@ export default async function SiteCard() {
         </Link>
       </div>
     </div>
-  );
+  ):(
+    <h1>Vous n'avez pas de site</h1>
+  )
 }
