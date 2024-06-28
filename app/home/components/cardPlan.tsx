@@ -11,7 +11,7 @@ interface PlanProps {
   
   const CardPlan: React.FC<PlanProps> = ({ planName, features, style,price }) => {
     return (
-      <div className={`card w-full max-w-sm ${style.background} shadow-xl my-10`}>
+      <div className={`card w-full mx-auto max-w-sm ${style.background} shadow-xl my-10`}>
         <div className="card-body items-center text-center">
           <h1 className={`text-metric font-bold ${style.textColor}`}>{planName}</h1>
           <p>

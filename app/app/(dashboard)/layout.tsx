@@ -3,7 +3,32 @@ import Profile from "@/components/profile";
 import Nav from "@/components/nav";
 import { getSession } from "@/lib/auth";
 import prisma from "@/lib/prisma";
+import { Metadata } from "next";
 
+const title =
+  "App FoodPoint";
+const description =
+  "FoodPoint est un service pour les restaurateurs leur permettant de créer un site de commande en ligne et click&collect facilement, et en quelques minutes, pour développer leur business.";
+const image = "https://vercel.pub/thumbnail.png";
+
+export const metadata: Metadata = {
+  title,
+  description,
+  icons: ["https://vercel.pub/favicon.ico"],
+  openGraph: {
+    title,
+    description,
+    images: [image],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: [image],
+    creator: "@vercel",
+  },
+  metadataBase: new URL("https://vercel.pub"),
+};
 export default async function DashboardLayout({ children }: { children: ReactNode }) {
   const session = await getSession();
   if (!session) {

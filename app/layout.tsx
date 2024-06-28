@@ -6,9 +6,9 @@ import { Metadata } from "next";
 import { cn } from "@/lib/utils";
 
 const title =
-  "FoodPoint.io - L'application pour créer votre site de commande en quelques clics.";
+  "FoodPoint - L'application pour créer votre site de commande en quelques clics.";
 const description =
-  "FoodPoint.io est un service pour les petits restaurateurs leur permettant de créer un site de commande en ligne et click&collect facilement, et en quelques minutes, pour développer leur business.";
+  "FoodPoint est un service pour les restaurateurs leur permettant de créer un site de commande en ligne et click&collect facilement, et en quelques minutes, pour développer leur business.";
 const image = "https://vercel.pub/thumbnail.png";
 
 export const metadata: Metadata = {
