@@ -21,7 +21,7 @@ const nanoid = customAlphabet(
   7,
 ); // 7-character random string
 
-export const createSite = async (formData: FormData) => {
+export const createSite = async (formData: FormData) => {//, restaurantId: string
   const session = await getSession();
   if (!session?.user.id) {
     return {
@@ -59,6 +59,11 @@ export const createSite = async (formData: FormData) => {
             id: session.user.id,
           },
         },
+        // restaurant: {
+        //   connect: {
+        //     id: restaurantId,
+        //   },
+        // },
       },
     });
 
@@ -80,10 +85,45 @@ export const createSite = async (formData: FormData) => {
   }
 };
 
+export const createRestaurant = async (formData: FormData) => {
+  const session = await getSession();
+  if (!session?.user.id) {
+    return {
+      error: "Not authenticated",
+    };
+  }
+
+  const name = formData.get("restaurantName") as string;
+  const address = formData.get("address") as string;
+  const phoneNumber = formData.get("phoneNumber") as string;
+  const email = formData.get("email") as string;
+  const description = formData.get("description") as string;
+
+  try {
+    // Créer le restaurant
+    const response = await prisma.restaurant.create({
+      data: {
+        name,
+        address,
+        phoneNumber,
+        email,
+        description,
+        userId: session.user.id,
+      },
+    });
+
+    return response;
+  } catch (error: any) {
+    return {
+      error: error.message,
+    };
+  }
+};
+
 export const updateSite = withSiteAuth(
   async (formData: FormData, site: Site, key: string) => {
     const value = formData.get(key) as string;
-   console.log(value)
+    console.log(value);
     try {
       let response;
 

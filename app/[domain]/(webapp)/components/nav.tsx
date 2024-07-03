@@ -43,7 +43,7 @@ export default function Nav() {
   ];
 
   return (
-    <div className="btm-nav">
+    <div className="btm-nav bg-white">
       {navItems.map((item) => (
         <Link key={item.name} href={item.href}>
           <button className={cn(

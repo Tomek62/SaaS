@@ -25,6 +25,7 @@ export async function getSiteData(domain: string) {
   )();
 }
 
+
 export async function getSite() {
   const session = await getSession();
   if (!session) {

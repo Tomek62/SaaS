@@ -11,7 +11,7 @@ export default async function SiteSettingsAppearance({
       id: decodeURIComponent(params.id),
     },
   });
-  
+
   return (
     <div className="flex flex-col space-y-6">
       <Form
@@ -59,29 +59,29 @@ export default async function SiteSettingsAppearance({
         handleSubmit={updateSite}
       />
       <Form
-          title="Couleur primaire"
-          description="Choissisez votre couleur préférée."
-          helpText="Couleur de fond de votre site."
-          inputAttrs={{
-            name: "primaryColor",
-            type: "text",
-            defaultValue: data?.primaryColor!,
-            placeholder: "Changez votre couleur",
-          }}
-          handleSubmit={updateSite}
-        />
-        <Form
-          title="Couleur secondaire"
-          description="Choissisez votre couleur secondaire préférée."
-          helpText="Couleur de fond de votre site."
-          inputAttrs={{
-            name: "secondaryColor",
-            type: "text",
-            defaultValue: data?.secondaryColor! ,
-            placeholder: "Changez votre couleur secondaire",
-          }}
-          handleSubmit={updateSite}
-        />
+        title="Couleur primaire"
+        description="Choissisez votre couleur préférée."
+        helpText="Couleur de fond de votre site."
+        inputAttrs={{
+          name: "primaryColor",
+          type: "text",
+          defaultValue: data?.primaryColor!,
+          placeholder: "Changez votre couleur",
+        }}
+        handleSubmit={updateSite}
+      />
+      <Form
+        title="Couleur secondaire"
+        description="Choissisez votre couleur secondaire préférée."
+        helpText="Couleur de fond de votre site."
+        inputAttrs={{
+          name: "secondaryColor",
+          type: "text",
+          defaultValue: data?.secondaryColor!,
+          placeholder: "Changez votre couleur secondaire",
+        }}
+        handleSubmit={updateSite}
+      />
       <Form
         title="404 Page Message"
         description="Message to be displayed on the 404 page."

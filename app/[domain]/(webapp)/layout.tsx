@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 export default function WebappLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="px-6 py-24 bg-gray-100 min-h-screen">
+    <div className="px-6 py-24  min-h-screen">
       {children}
     </div>
   );
