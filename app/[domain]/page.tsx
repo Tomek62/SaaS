@@ -61,13 +61,13 @@ export default async function SiteHomePage({
       </div>
       <div>
         <h1 className="mb-8 text-left text-2xl font-bold text-gray-800">
-          Notre nouveauté
+          Nouveauté
         </h1>
-        <SpecialCard />
+        {/* <SpecialCard /> */}
       </div>
       <div>
         <h1 className="mb-8 text-left text-2xl font-bold text-gray-800">
-          Nos offres du moment
+          Offres du moment
         </h1>
         {/* Add your offers content here */}
       </div>

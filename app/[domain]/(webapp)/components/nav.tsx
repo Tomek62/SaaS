@@ -28,12 +28,12 @@ export default function Nav() {
       segment: "order",
       icon:<ShoppingCart />
     },
-    {
-      name: "Fidélité",
-      href: `/fidelity`,
-      segment: "fidelity",
-      icon:<BadgeEuro />
-    },
+    // {
+    //   name: "Fidélité",
+    //   href: `/fidelity`,
+    //   segment: "fidelity",
+    //   icon:<BadgeEuro />
+    // },
     {
       name: "Account",
       href: `/account`,

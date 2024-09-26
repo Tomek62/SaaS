@@ -13,9 +13,9 @@ export default function Nav() {
   ];
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   return (
-    <header className="absolute inset-x-0 top-0 z-50">
+    <header className="absolute inset-x-0 top-0 z-50 lg:px-32">
             <nav
-              className="flex items-center justify-between p-6 lg:px-8"
+              className="flex items-center justify-between pt-8 "
               aria-label="Global"
             >
               <div className="flex lg:flex-1">
@@ -45,12 +45,23 @@ export default function Nav() {
                 ))}
               </div>
               <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+
+              <div className="btn btn-outline border-light-brand-emphasis mr-2 hover:bg-light-brand-emphasis">
                 <a
                   href="/login"
-                  className="btn btn-primary btn-outline  "
+                  className="flex justify-center  text-light-brand-emphasis  text-sm font-semibold "
                 >
-                  Se connecter 
+                  Se connecter
                 </a>
+              </div>
+              <div >
+                <a
+                  href="/login"
+                  className="btn btn-primary bg-light-brand-emphasis hover:bg-light-brand-emphasis-dark text-white text-sm font-semibold"
+                >
+                  S'inscrire
+                </a>
+              </div>
               </div>
             </nav>
             <Dialog
@@ -92,6 +103,14 @@ export default function Nav() {
                       className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                     >
                       Se connecter
+                    </a>
+                  </div>
+                  <div className="py-6">
+                    <a
+                      href="/login"
+                      className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    >
+                      S'inscrire
                     </a>
                   </div>
                 </div>

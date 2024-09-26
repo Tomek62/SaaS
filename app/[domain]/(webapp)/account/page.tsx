@@ -1,6 +1,7 @@
 import React from "react";
 import { User, History, CreditCard, Settings, LogOut } from "lucide-react";
 import { getSession } from "next-auth/react";
+import LoginPage from "../../(auth)/login/page";
 
 export default async function Account() {
   const session = await getSession();
@@ -40,7 +41,7 @@ export default async function Account() {
         </div>
       </div>
     ) : (
-      <h1>Veuillez vous connecter</h1>
+      <LoginPage />
     )
     }
     </>

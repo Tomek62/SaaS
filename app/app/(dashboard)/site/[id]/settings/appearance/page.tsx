@@ -1,6 +1,9 @@
+// "use client";
 import prisma from "@/lib/prisma";
 import Form from "@/components/form";
 import { updateSite } from "@/lib/actions";
+import { HexColorPicker } from "react-colorful";
+import { useState } from "react";
 export default async function SiteSettingsAppearance({
   params,
 }: {
@@ -12,6 +15,7 @@ export default async function SiteSettingsAppearance({
     },
   });
 
+  
   return (
     <div className="flex flex-col space-y-6">
       <Form
@@ -70,6 +74,7 @@ export default async function SiteSettingsAppearance({
         }}
         handleSubmit={updateSite}
       />
+      {/* <HexColorPicker color={data?.primaryColor!}/> */}
       <Form
         title="Couleur secondaire"
         description="Choissisez votre couleur secondaire préférée."
