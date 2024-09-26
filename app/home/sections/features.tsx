@@ -25,7 +25,7 @@ export const projects = [
 ];
 const Features = () => {
   return (
-    <section className="bg-light-brand-faint  py-10 px-10 lg:px-40">
+    <section className="py-10 px-10 lg:px-40">
       <h1 className="text-3xl font-bold text-center mb-10">Pourquoi nous ?</h1>
       <div className="gap-10 font-semibold md:flex md:text-xl">
       <HoverEffect items={projects}/>

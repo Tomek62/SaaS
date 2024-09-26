@@ -11,12 +11,14 @@ import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { ArrowBigDownDash, Menu } from "lucide-react";
 import IphoneMockup from "@/components/iphone-mockup";
+import ProcessSection from "./sections/processSection";
 
 export default function HomePage() {
   return (
     <div className="flex min-h-screen flex-col ">
       <Nav />
       <Hero />
+      <ProcessSection />
       <Features />    
       <Demo />
       <PlanSection />

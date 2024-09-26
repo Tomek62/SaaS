@@ -14,10 +14,13 @@ module.exports = {
         primary: "#1D4ED8", // Couleur principale
         secondary: "#000000", // Couleur secondaire
         textSecondary: "#4B5563", // Couleur des textes secondaires
+        bgHeroPink:"#FFD6D6",
+        bgSecondary:"#F9F8FE"
       },
       fontFamily: {
         primary: ["Rubik", ...fontFamily.sans], // Police principale : Rubik
         secondary: ["Roboto", ...fontFamily.sans], // Police secondaire : Roboto
+        appPrimary: ["Russo One", ...fontFamily.sans] // Police secondaire : Russo One
       },
       boxShadow: {
         input: "0 1px 2px 0 rgb(0 0 0 / 0.05)",

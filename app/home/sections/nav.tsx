@@ -49,10 +49,10 @@ export default function Nav() {
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <div className="btn btn-outline mr-2 border-primary hover:bg-primary">
+          <div className="btn mr-4 border-primary bg-transparent font-semibold text-primary hover:bg-primary hover:text-white hover:border-1">
             <a
               href="/login"
-              className="flex justify-center  text-sm  font-semibold text-primary "
+              className="flex justify-center  text-sm  font-semibold  group-hover:text-white "
             >
               Se connecter
             </a>
