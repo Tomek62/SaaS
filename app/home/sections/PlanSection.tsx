@@ -43,7 +43,7 @@ const PlanSection: React.FC = () => {
           "Maintenance premium",
         ],
         style: {
-          background: "bg-light-brand-emphasis",
+          background: "bg-primary",
           backgroundFeatures: "bg-light-background-muted",
           textColor: "text-white",
         },
@@ -75,7 +75,7 @@ const PlanSection: React.FC = () => {
           "Maintenance premium",
         ],
         style: {
-          background: "bg-light-brand-emphasis",
+          background: "bg-primary",
           backgroundFeatures: "bg-light-background-muted",
           textColor: "text-white",
         },
@@ -84,14 +84,13 @@ const PlanSection: React.FC = () => {
   };
 
   return (
-    <section className="text-center pb-48">
+    <section className="pb-48 text-center">
       <div className="flex flex-col px-5">
         <h1 className="text-4xl font-bold  text-black lg:text-5xl">
-          Choisissez votre{" "}
-          <span className="text-light-brand-emphasis">plan</span> <br />
+          Choisissez votre <span className="text-primary">plan</span> <br />
           Obtenez votre service en un instant
         </h1>
-        <p className="py-6 text-light-content-strong">
+        <p className="text-light-content-strong py-6">
           Economisez jusqu&apos;à 20% en prenant le forfait annuel.
           <br /> Les 3 premiers mois sont satisfaits ou remboursés !
         </p>
@@ -112,7 +111,7 @@ const PlanSection: React.FC = () => {
           </a>
         </div>
       </div>
-      <div className="items-center justify-center md:flex gap-10 px-5">
+      <div className="items-center justify-center gap-10 px-5 md:flex">
         {activeTab === "Mensuel" &&
           plans.mensuel.map((plan, index) => (
             <CardPlan key={index} {...plan} />

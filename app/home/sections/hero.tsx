@@ -1,38 +1,40 @@
 import IphoneMockup from "@/components/iphone-mockup";
+import { Youtube } from "lucide-react";
+import Image from "next/image";
 
 const Hero = () => {
   return (
-    <div className="relative isolate px-6  lg:pt-32 pb-32 lg:px-32">
+    <div className="relative isolate px-6  pb-32 lg:px-32 lg:pt-32">
       <div
         className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
         aria-hidden="true"
       ></div>
       <div className="max-w-screen mx-auto pt-28 lg:flex  lg:items-center  lg:justify-between lg:pt-0">
         <div className="text-center lg:w-1/2 lg:text-left">
-          <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-            <span className="text-light-brand-emphasis">Boostez</span> votre
-            business de Fast-food en{" "}
-            <span className="text-light-brand-emphasis">quelques clics.</span>
+          <h1 className="text-4xl font-bold font-primary tracking-tight text-gray-900 sm:text-5xl">
+            <span className="text-primary">Boostez</span> votre business de
+            Fast-food en <span className="text-primary">quelques clics.</span>
           </h1>
-          <p className="mt-6 text-lg leading-8 text-gray-600">
-          Avec FoodPoint, transformez votre restaurant en quelques clics.
-              <br />
-             Créez facilement un site de commande en ligne, de livraison, et de
-             click & collect. Attirez une nouvelle clientèle et augmentez vos
-             ventes en offrant un service moderne et pratique.
+          <p className="font-secondary mt-6 text-lg leading-8 text-gray-600">
+            Avec FoodPoint, transformez votre restaurant en quelques clics.
+            <br />
+            Créez facilement un site de commande en ligne, de livraison, et de
+            click & collect. Attirez une nouvelle clientèle et augmentez vos
+            ventes en offrant un service moderne et pratique.
           </p>
-          <div className="mt-10 flex items-center  justify-center gap-x-6 lg:justify-start">
+          <div className="mt-10 flex items-center  justify-center gap-x-6 lg:justify-start text-sm font-primary">
             <a
               href="#"
-              className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="btn rounded-3xl bg-primary text-white font-semibold  "
             >
-              Get started
+              Essayez maintenant
             </a>
             <a
               href="#"
-              className="text-sm font-semibold leading-6 text-gray-900"
+              className="flex items-center text-sm font-semibold  text-gray-900"
             >
-              Learn more <span aria-hidden="true">→</span>
+              <Youtube className="mr-2"/>
+              Voir la démo
             </a>
           </div>
         </div>
@@ -42,38 +44,15 @@ const Hero = () => {
           </IphoneMockup>
         </div>
       </div>
+      <div className="py-32">
+        <h3 className="text-3xl font-bold text-center mb-10">Un projet propulsé à l'aide de</h3>
+        <div className="lg:flex">
+          <Image  src="/euratechnologies.png" width={500} height={100} alt="Euratechnologies"/>
+          <Image  src="/Pepite-Logo-bleu.png" width={500} height={90} alt="Pépite Lille" />
+          <Image  src="/chez_martinus.png" width={500} height={90} alt="Chez Martinus" />
+        </div>
+      </div>
     </div>
-    // <section className="px-10 lg:px-40">
-    //   <div className="flex items-center flex-col md:flex-row ">
-    //     <div className="lg:max-w-xlg lg:pr-32">
-    //       <h1 className="text-4xl font-bold  text-black lg:text-5xl">
-    //         <span className="text-light-brand-emphasis">Boostez</span> votre
-    //         business de Fast-food en{" "}
-    //         <span className="text-light-brand-emphasis">quelques clics.</span>
-    //       </h1>
-    //       <p className="py-6 text-light-content-strong">
-    //         Avec FoodPoint, transformez votre restaurant en quelques clics.
-    //         <br />
-    //         Créez facilement un site de commande en ligne, de livraison, et de
-    //         click & collect. Attirez une nouvelle clientèle et augmentez vos
-    //         ventes en offrant un service moderne et pratique.
-    //       </p>
-    //       <button className="btn btn-primary bg-light-brand-emphasis text-light-brand-inverted">
-    //         Essayez maintenant
-    //       </button>
-    //       <button className="btn btn-primary ml-6 bg-light-brand-emphasis text-light-brand-inverted">
-    //         Demo
-    //       </button>
-    //     </div>
-    //     <Image
-    //       src={heroImage}
-    //       alt="Hero"
-    //       className="w-full max-w-sm lg:max-w-lg "
-    //       layout="responsive"
-    //       draggable={false}
-    //     />
-    //   </div>
-    // </section>
   );
 };
 
