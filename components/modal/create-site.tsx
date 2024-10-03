@@ -33,7 +33,7 @@ export default function CreateSiteModal() {
   return (
     <form
       action={async (data: FormData) =>
-        createSite(data).then((res: any) => {
+        createSite(data).then((res: any) => { //bien rajouter restaurantId
           if (res.error) {
             toast.error(res.error);
           } else {

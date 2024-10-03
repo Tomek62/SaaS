@@ -99,7 +99,7 @@ export default async function SiteLayout({
           </Link>
         </div>
       </div>
-      <div className="min-h-screen sm:pl-60">
+      <div className="min-h-screen px-6">
         {children}
       </div>
       <Nav />

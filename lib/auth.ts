@@ -3,11 +3,37 @@ import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prisma from "@/lib/prisma";
+import CredentialsProvider from "next-auth/providers/credentials";
+import { compare } from "bcryptjs";
 
 const VERCEL_DEPLOYMENT = !!process.env.VERCEL_URL;
 
 export const authOptions: NextAuthOptions = {
   providers: [
+    CredentialsProvider({
+      name: "Credentials",
+      credentials: {
+        email: { label: "Email", type: "text", placeholder: "email@example.com" },
+        password: { label: "Password", type: "password" },
+      },
+      async authorize(credentials) {
+        const user = await prisma.user.findUnique({
+          where: { email: credentials?.email },
+        });
+
+        if (!user) {
+          throw new Error('No user found with that email');
+        }
+
+        const isValidPassword = await compare(credentials!.password, user.password!);
+
+        if (!isValidPassword) {
+          throw new Error('Invalid password');
+        }
+
+        return { id: user.id, name: user.name, email: user.email };
+      },
+    }),
     GitHubProvider({
       clientId: process.env.AUTH_GITHUB_ID as string,
       clientSecret: process.env.AUTH_GITHUB_SECRET as string,
@@ -82,6 +108,7 @@ export const authOptions: NextAuthOptions = {
     },
   },
 };
+
 
 export function getSession() {
   return getServerSession(authOptions) as Promise<{
