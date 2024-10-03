@@ -2,7 +2,7 @@ import React from "react";
 
 const Demo = () => {
   return (
-    <section className="px-10  py-48 lg:px-40 lg:py-56">
+    <section className="px-10  py-48 lg:px-40 lg:py-56" id="demo">
       <div className="container mx-auto flex flex-col items-center justify-between md:flex-row">
         {/* Partie Gauche */}
         <div className="flex h-64 w-full flex-col justify-between md:h-80 md:w-1/2 md:pr-10 lg:h-96">

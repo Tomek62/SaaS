@@ -15,7 +15,8 @@ module.exports = {
         secondary: "#000000", // Couleur secondaire
         textSecondary: "#4B5563", // Couleur des textes secondaires
         bgHeroPink:"#FFD6D6",
-        bgSecondary:"#F9F8FE"
+        bgSecondary:"#F9F8FE",
+        bgCardApp:"#F5F5F5"
       },
       fontFamily: {
         primary: ["Rubik", ...fontFamily.sans], // Police principale : Rubik

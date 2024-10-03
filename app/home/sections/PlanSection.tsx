@@ -24,12 +24,12 @@ const PlanSection: React.FC = () => {
         features: [
           "1 création de site",
           "1 service au choix",
-          "Customisation de son site",
+          "Personnalisation de son site",
           "Maintenance du service",
         ],
         style: {
           background: "bg-white",
-          backgroundFeatures: "bg-light-background-subtle",
+          backgroundFeatures: "bg-bgCardApp",
           textColor: "text-black",
         },
       },
@@ -39,12 +39,14 @@ const PlanSection: React.FC = () => {
         features: [
           "2 créations de site",
           "2 services au choix",
-          "Customisation avancée",
+          "Personnalisation avancée",
           "Maintenance premium",
+          "Accompagnement marketing",
+          "Service de fidélisation",
         ],
         style: {
           background: "bg-primary",
-          backgroundFeatures: "bg-light-background-muted",
+          backgroundFeatures: "bg-bgCardApp",
           textColor: "text-white",
         },
       },
@@ -61,7 +63,7 @@ const PlanSection: React.FC = () => {
         ],
         style: {
           background: "bg-white",
-          backgroundFeatures: "bg-light-background-subtle",
+          backgroundFeatures: "bg-bgCardApp",
           textColor: "text-black",
         },
       },
@@ -71,12 +73,14 @@ const PlanSection: React.FC = () => {
         features: [
           "2 créations de site",
           "2 services au choix",
-          "Customisation avancée",
+          "Personnalisation avancée",
           "Maintenance premium",
+          "Accompagnement marketing",
+          "Service de fidélisation",
         ],
         style: {
           background: "bg-primary",
-          backgroundFeatures: "bg-light-background-muted",
+          backgroundFeatures: "bg-bgCardApp",
           textColor: "text-white",
         },
       },
@@ -84,14 +88,14 @@ const PlanSection: React.FC = () => {
   };
 
   return (
-    <section className="pb-48 text-center">
+    <section className="pb-48 text-center" id="tarifs">
       <div className="flex flex-col px-5">
         <h1 className="text-4xl font-bold  text-black lg:text-5xl">
           Choisissez votre <span className="text-primary">plan</span> <br />
           Obtenez votre service en un instant
         </h1>
-        <p className="text-light-content-strong py-6">
-          Economisez jusqu&apos;à 20% en prenant le forfait annuel.
+        <p className="text-secondary font-secondary py-6">
+          Economisez jusqu'à 20% en prenant le forfait annuel.
           <br /> Les 3 premiers mois sont satisfaits ou remboursés !
         </p>
         <div role="tablist" className="tabs-boxed tabs mx-auto md:w-1/4">
@@ -119,6 +123,10 @@ const PlanSection: React.FC = () => {
         {activeTab === "Annuel" &&
           plans.annuel.map((plan, index) => <CardPlan key={index} {...plan} />)}
       </div>
+      <p>Ces prix ne sont pas figés et peuvent potentiellement bouger d'ici la fin du développement du produit.*
+        <br />
+        Le but ici est de donner un ordre d'idée des prix pratiqués.*
+      </p>
     </section>
   );
 };

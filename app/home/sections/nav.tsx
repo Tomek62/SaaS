@@ -3,20 +3,21 @@ import { Dialog, DialogPanel } from "@headlessui/react";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function Nav() {
   const navigation = [
-    { name: "Accueil", href: "#" },
-    { name: "Demo", href: "#" },
-    { name: "Plans", href: "#" },
-    { name: "FAQ", href: "#" },
-    { name: "Contact", href: "#" },
+    { name: "Accueil", href: "/" },
+    { name: "Demo", href: "#demo" },
+    { name: "Tarifs", href: "/plans" },
+    // { name: "FAQ", href: "#" },
+    { name: "Contact", href: "/contact" },
   ];
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   return (
     <header className="absolute inset-x-0 top-0 z-50 lg:px-32">
       <nav
-        className="flex items-center justify-between pt-8 font-primary "
+        className="flex items-center justify-between pt-8 px-6 md:px-0 font-primary "
         aria-label="Global"
       >
         <div className="flex lg:flex-1">
@@ -58,12 +59,12 @@ export default function Nav() {
             </a>
           </div>
           <div>
-            <a
-              href="/login"
+            <Link
+              href="/subscribe"
               className="hover:bg-primary-dark btn btn-primary bg-primary text-sm font-semibold text-white"
             >
               S'inscrire
-            </a>
+            </Link>
           </div>
         </div>
       </nav>
@@ -113,7 +114,7 @@ export default function Nav() {
               </div>
               <div className="py-6">
                 <a
-                  href="/login"
+                  href="/subscribe"
                   className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   S'inscrire

@@ -1,16 +1,17 @@
-import BlurBackground from "@/components/ui/blur-background";
 import { Metadata } from "next";
 import { ReactNode } from "react";
+
 import Footer from "../sections/footer";
+import BlurBackground from "@/components/ui/blur-background";
 
 export const metadata: Metadata = {
-  title: "App Foodpoint | Connexion",
+  title: "Foodpoint | Contact",
 };
 
-export default function AuthLayout({ children }: { children: ReactNode }) {
+export default function ContactLayout({ children }: { children: ReactNode }) {
   return (
     <div>
-    <div className="relative py-12  md:overflow-hidden ">
+    <div className="relative h-screen py-12">
       {children}
       <BlurBackground />
     </div>

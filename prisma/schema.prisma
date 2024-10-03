@@ -12,10 +12,11 @@ model User {
   id            String       @id @default(cuid())
   name          String?
   role          UserRole     @default(CUSTOMER)
+  password      String?
   username      String?
   gh_username   String?
   email         String?      @unique
-  emailVerified DateTime?
+  emailVerified Boolean      @default(false)
   siteId        String?      @unique
   image         String?
   createdAt     DateTime     @default(now())

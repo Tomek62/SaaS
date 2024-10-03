@@ -1,5 +1,14 @@
 import IphoneMockup from "@/components/iphone-mockup";
-import { Youtube, Wifi, BatteryMedium } from "lucide-react";
+import BlurBackground from "@/components/ui/blur-background";
+import {
+  Youtube,
+  Wifi,
+  BatteryMedium,
+  Home,
+  ShoppingCart,
+  UtensilsCrossed,
+  User,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -15,16 +24,17 @@ const Hero = () => {
           <p className="mt-6 font-secondary text-lg leading-8 text-gray-600">
             Avec FoodPoint, transformez votre restaurant en quelques clics.
             <br />
-            Créez facilement un site de commande en ligne, de livraison, et de
+            Crée facilement un site de commande en ligne, de livraison, et de
             click & collect. Attirez une nouvelle clientèle et augmentez vos
             ventes en offrant un service moderne et pratique.
           </p>
           <div className="mt-10 flex items-center  justify-center gap-x-6 font-primary text-sm lg:justify-start">
             <a
-              href="#"
+              href="/subscribe"
               className="hover:border-1 btn rounded-3xl border-none bg-primary font-semibold text-white hover:bg-white hover:text-primary"
             >
-              Essayez maintenant
+              Devenez bêta-testeur 
+              {/* Essayez maintenant */}
             </a>
             <a
               href="#"
@@ -37,7 +47,7 @@ const Hero = () => {
         </div>
         <div className="mt-16 flex ">
           <IphoneMockup>
-            <div className="h-full w-full bg-white text-black">
+            <div className="relative h-full w-full bg-white text-black">
               {/* HEADER IPHONE */}
               <div className="header flex justify-between">
                 <p className="ml-8">20:32</p>
@@ -52,19 +62,78 @@ const Hero = () => {
               </div>
               {/* BODY APPLICATION */}
               <div className="px-4 pt-5">
-              {/* HEADER APPLICATION */}
-              <div className="flex flex-row items-center">
-                <div className="w-10">
-                  <Image
-                    src="/logo.png"
-                    width={500}
-                    height={100}
-                    alt="FoodPoint"
-                  />
+                {/* HEADER APPLICATION */}
+                <div className="flex flex-row items-center">
+                  <div className="w-10">
+                    <Image
+                      src="/Logo-chezmartinus.png"
+                      width={500}
+                      height={100}
+                      alt="FoodPoint"
+                    />
+                  </div>
+                  <h2 className="ml-4 font-appPrimary text-lg">
+                    Chez Martinus
+                  </h2>
                 </div>
-                <h2 className="ml-4 text-lg font-appPrimary">Chez Martinus</h2>
+                {/* Card info */}
+                <div className="my-8 rounded-md bg-bgCardApp p-2 ">
+                  <div className="flex flex-row justify-between">
+                    <div>
+                      <div className="flex items-center">
+                        <div className="h-3 w-3 rounded-full bg-green-500"></div>
+                        <h3 className="ml-2 font-appPrimary text-lg">Ouvert</h3>
+                      </div>
+                      <p className="ml-5 font-secondary text-xs">Jusqu'à 23h</p>
+                    </div>
+                    <div className="rounded-lg bg-white px-4 py-1 text-center">
+                      <h3 className="font-appPrimary">Points fidélités</h3>
+                      <p className="font-secondary">38</p>
+                    </div>
+                  </div>
+                  <div className="mt-4 flex justify-evenly">
+                    <button className="rounded-md border-none bg-white px-6 py-1 font-semibold hover:bg-white">
+                      <p className="text-xs text-black">Plus d'infos</p>
+                    </button>
+                    <button className="rounded-md border-none bg-gradient-to-r from-red-300 to-red-500 px-6 py-1 font-semibold">
+                      <p className="text-xs text-white">Commander</p>
+                    </button>
+                  </div>
+                </div>
+                <h3 className="font-appPrimary">Nos Menus</h3>
+                <div className="grid grid-cols-2 gap-2">
+                  <div className="rounded-lg bg-bgCardApp">
+                    <Image
+                      src="/Smash-burger.png"
+                      width={500}
+                      height={100}
+                      alt="Smash burger"
+                    />
+                    <p className="text-center font-secondary text-base font-black">
+                      Burgers
+                    </p>
+                  </div>
+                  <div className="rounded- bg-bgCardApp">
+                    <Image
+                      src="/Sandwich.png"
+                      width={500}
+                      height={100}
+                      alt="Euratechnologies"
+                    />
+                    <p className="text-center font-secondary text-base font-black">
+                      Sandwichs
+                    </p>
+                  </div>
+                </div>
+                <div className="mt-8">
+                  <h3 className="font-appPrimary">Nos sides</h3>
+                </div>
               </div>
-              
+              <div className="absolute bottom-0 flex w-full justify-around bg-bgCardApp py-2">
+                <Home width={20} />
+                <UtensilsCrossed width={20} />
+                <ShoppingCart width={20} />
+                <User width={20} />
               </div>
             </div>
           </IphoneMockup>
@@ -86,7 +155,7 @@ const Hero = () => {
               />
             </Link>
           </div>
-          <div className="w-1/2 lg:w-1/6">
+          {/* <div className="w-1/2 lg:w-1/6">
             <Link href="https://pepite-nord.pepitizy.fr/">
               <Image
                 src="/Pepite-Logo-bleu.png"
@@ -96,7 +165,7 @@ const Hero = () => {
                 className="transition duration-300 hover:scale-110"
               />
             </Link>
-          </div>
+          </div> */}
           <div className="lg:w-1/4">
             <Link href="https://www.instagram.com/chez_martinus_friterie/">
               <Image
@@ -110,10 +179,7 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      <div className="absolute -left-1/4 top-16 z-[-1] h-1/2 w-full scale-150 rounded-full bg-gradient-to-r from-primary to-white opacity-60 blur-3xl"></div>
-      <div className="absolute -right-1/4 bottom-0 z-[-1] h-1/2 w-full scale-150 rounded-full bg-gradient-to-l from-primary to-white opacity-60 blur-3xl"></div>
-      <div className="from-bgHeroPink absolute right-1 top-2.5 z-[-1] h-1/3 w-full scale-150 rounded-full bg-gradient-to-bl to-white opacity-70 blur-3xl"></div>
-      <div className="absolute right-1/3 top-2/3 z-[-1] h-1/3 w-1/3  scale-150 rounded-full bg-white opacity-70 blur-3xl"></div>
+      <BlurBackground/>
     </div>
   );
 };

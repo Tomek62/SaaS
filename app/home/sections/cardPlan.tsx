@@ -17,8 +17,8 @@ interface PlanProps {
           <p>
             Profitez du plan {planName.includes("Basic") ? "Basic" : "Premium"} pour développer <br /> votre business. 
           </p>
-          <h1 className={`lg:text-5xl text-xl font-semibold py-5 ${style.textColor}`}>{price}<span className="text-sm">€/mois</span></h1>
-          <div className={`card px-5 pt-6 pb-3 ${style.backgroundFeatures}`}>
+          <h1 className={`lg:text-5xl text-xl font-semibold py-5 ${style.textColor}`}>{price}<span className="text-sm">€/mois*</span></h1>
+          <div className={`card px-5 py-6 ${style.backgroundFeatures}`}>
             <ul className="text-left space-y-4">
               {features.map((feature, index) => (
                 <li key={index} className="flex items-center text-black">
@@ -42,9 +42,9 @@ interface PlanProps {
                 </li>
               ))}
             </ul>
-            <div className="card-actions mx-auto mt-8">
+            {/* <div className="card-actions mx-auto mt-8">
               <button className="btn btn-primary btn-sm">Sélectionner</button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
