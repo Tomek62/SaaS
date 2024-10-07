@@ -27,10 +27,10 @@ export const HoverEffect = ({
       {items.map((item, idx) => (
         <div
           className="group relative  block h-full w-full p-2"
-          onMouseEnter={() => setHoveredIndex(idx)}
-          onMouseLeave={() => setHoveredIndex(null)}
+          // onMouseEnter={() => setHoveredIndex(idx)}
+          // onMouseLeave={() => setHoveredIndex(null)}
         >
-          <AnimatePresence>
+          {/* <AnimatePresence>
             {hoveredIndex === idx && (
               <motion.span
                 className="absolute inset-0 block h-full w-full rounded-3xl bg-neutral-200  bg-primary/[0.8]"
@@ -46,7 +46,7 @@ export const HoverEffect = ({
                 }}
               />
             )}
-          </AnimatePresence>
+          </AnimatePresence> */}
           <Card>
             <CardTitle>{[item.icon, item.title]}</CardTitle>
             <CardDescription>{item.description}</CardDescription>
