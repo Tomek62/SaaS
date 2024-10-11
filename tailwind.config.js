@@ -14,19 +14,20 @@ module.exports = {
         primary: "#1D4ED8", // Couleur principale
         secondary: "#000000", // Couleur secondaire
         textSecondary: "#4B5563", // Couleur des textes secondaires
-        bgHeroPink:"#FFD6D6",
-        bgSecondary:"#F9F8FE",
-        bgCardApp:"#F5F5F5"
+        bgHeroPink: "#FFD6D6",
+        bgSecondary: "#F9F8FE",
+        bgCardApp: "#F5F5F5",
       },
       fontFamily: {
-        primary: ["Rubik", ...fontFamily.sans], // Police principale : Rubik
-        secondary: ["Roboto", ...fontFamily.sans], // Police secondaire : Roboto
-        appPrimary: ["Russo One", ...fontFamily.sans] // Police secondaire : Russo One
+        secondary: ["var(--font-roboto)", ...fontFamily.sans], // Police secondaire : Roboto
+        appPrimary: ["var(--font-russo)"],
+        primary: ["var(--font-rubik)"],
       },
       boxShadow: {
         input: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
         card: "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
-        dropdown: "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
+        dropdown:
+          "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
       },
       borderRadius: {
         small: "0.375rem",
