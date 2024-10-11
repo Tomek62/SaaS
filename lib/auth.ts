@@ -13,7 +13,11 @@ export const authOptions: NextAuthOptions = {
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        email: { label: "Email", type: "text", placeholder: "email@example.com" },
+        email: {
+          label: "Email",
+          type: "text",
+          placeholder: "email@example.com",
+        },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
@@ -22,13 +26,16 @@ export const authOptions: NextAuthOptions = {
         });
 
         if (!user) {
-          throw new Error('No user found with that email');
+          throw new Error("No user found with that email");
         }
 
-        const isValidPassword = await compare(credentials!.password, user.password!);
+        const isValidPassword = await compare(
+          credentials!.password,
+          user.password!,
+        );
 
         if (!isValidPassword) {
-          throw new Error('Invalid password');
+          throw new Error("Invalid password");
         }
 
         return { id: user.id, name: user.name, email: user.email };
@@ -41,8 +48,8 @@ export const authOptions: NextAuthOptions = {
         params: {
           prompt: "consent",
           access_type: "offline",
-          response_type: "code"
-        }
+          response_type: "code",
+        },
       },
       profile(profile) {
         return {
@@ -55,8 +62,8 @@ export const authOptions: NextAuthOptions = {
       },
     }),
     GoogleProvider({
-      clientId: process.env.AUTH_GOOGLE_ID as string,
-      clientSecret: process.env.AUTH_GOOGLE_SECRET as string,
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_SECRET_CLIENT as string,
       profile(profile) {
         return {
           id: profile.sub,
@@ -108,7 +115,6 @@ export const authOptions: NextAuthOptions = {
     },
   },
 };
-
 
 export function getSession() {
   return getServerSession(authOptions) as Promise<{

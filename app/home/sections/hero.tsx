@@ -21,7 +21,7 @@ const Hero = () => {
             <span className="text-primary">Boostez</span> votre business de
             Fast-food en <span className="text-primary">quelques clics.</span>
           </h1>
-          <p className="mt-6 font-secondary text-lg leading-8 text-gray-600">
+          <p className="mt-6 font-secondary text-lg text-gray-600">
             Avec FoodPoint, transformez votre restaurant en quelques clics.
             <br />
             Crée facilement un site de commande en ligne, de livraison, et de
@@ -155,7 +155,7 @@ const Hero = () => {
               />
             </Link>
           </div>
-          {/* <div className="w-1/2 lg:w-1/6">
+          <div className="w-1/2 lg:w-1/6">
             <Link href="https://pepite-nord.pepitizy.fr/">
               <Image
                 src="/Pepite-Logo-bleu.png"
@@ -165,7 +165,7 @@ const Hero = () => {
                 className="transition duration-300 hover:scale-110"
               />
             </Link>
-          </div> */}
+          </div>
           <div className="lg:w-1/4">
             <Link href="https://www.instagram.com/chez_martinus_friterie/">
               <Image
