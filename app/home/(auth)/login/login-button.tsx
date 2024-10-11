@@ -29,7 +29,7 @@ export default function LoginButton({provider}:{provider:string}) {
     // Add more providers here as needed
     return null;
   };
-
+  
 
   return (
     <button

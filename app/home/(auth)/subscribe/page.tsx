@@ -18,6 +18,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import Nav from "../../sections/nav";
 import Link from "next/link";
+import { signUp ,googleLogin} from "@/api/api.auth";
 
 export default function RegistrationPage() {
   const [name, setName] = useState("");
@@ -32,45 +33,14 @@ export default function RegistrationPage() {
     setLoading(true);
   
     try {
-      // Step 1: Register the user in your database
-      const res = await fetch('/api/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name, email, password }),
-      });
-  
-      if (!res.ok) {
-        const { message } = await res.json();
-        toast.error(message || 'Inscription échouée');
-        return;
-      }
-  
-      // Step 2: Generate a random verification code
-      const verificationCode = Math.floor(100000 + Math.random() * 900000).toString(); // 6-digit code
-  
-      // Step 3: Send verification email
-      const emailRes = await fetch('/api/send-verification-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, verificationCode }),
-      });
-  
-      if (!emailRes.ok) {
-        toast.error('Failed to send verification email.');
-        return;
-      }
-  
+      await signUp(name, email, password);
       toast.success('Inscription réussie ! Veuillez vérifier vos emails pour le code de vérification.');
       setName('');
       setEmail('');
       setPassword('');
   
       // Optionally redirect to a verification page to input the code
-      router.push('/verify-email');
+      router.push('/subscribe/verify-email');
     } catch (error) {
       toast.error('Something went wrong.');
     } finally {
@@ -204,9 +174,9 @@ export default function RegistrationPage() {
             <div className="mb-4">
               <label className="block text-sm font-medium text-gray-700">Nom</label>
               <input
-                type="email"
+                type="text"
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                value={email}
+                value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
               />
