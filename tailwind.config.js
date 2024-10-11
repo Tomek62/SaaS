@@ -19,9 +19,9 @@ module.exports = {
         bgCardApp: "#F5F5F5",
       },
       fontFamily: {
+        primary: ["var(--font-rubik)"],
         secondary: ["var(--font-roboto)", ...fontFamily.sans], // Police secondaire : Roboto
         appPrimary: ["var(--font-russo)"],
-        primary: ["var(--font-rubik)"],
       },
       boxShadow: {
         input: "0 1px 2px 0 rgb(0 0 0 / 0.05)",

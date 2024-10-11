@@ -1,5 +1,12 @@
 import localFont from "next/font/local";
-import { Inter, Lora, Work_Sans, Rubik, Russo_One,Roboto } from "next/font/google";
+import {
+  Inter,
+  Lora,
+  Work_Sans,
+  Rubik,
+  Russo_One,
+  Roboto,
+} from "next/font/google";
 
 export const inter = Inter({
   variable: "--font-inter",
@@ -12,8 +19,6 @@ export const cal = localFont({
   display: "swap",
 });
 
-
-
 export const russo = Russo_One({
   variable: "--font-russo",
   weight: "400",
@@ -22,13 +27,13 @@ export const russo = Russo_One({
 });
 export const rubik = Rubik({
   variable: "--font-rubik",
-  weight: ["400","500","600","700"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
   subsets: ["latin"],
 });
 export const roboto = Roboto({
-  variable: "--font-rubik",
-  weight: ["400","500","700"],
+  variable: "--font-roboto",
+  weight: ["400", "500", "700"],
   display: "swap",
   subsets: ["latin"],
 });
@@ -60,8 +65,6 @@ export const roboto = Roboto({
 //   display: 'swap',
 // });
 
-
-
 export const calTitle = localFont({
   src: "./CalSans-SemiBold.otf",
   variable: "--font-title",
@@ -81,13 +84,12 @@ export const work = Work_Sans({
   display: "swap",
 });
 
-
 export const fontMapper = {
   "font-cal": calTitle.variable,
   "font-lora": lora.variable,
   "font-work": work.variable,
   "font-inter": inter.variable,
-  "font-rubik": rubik.variable,  
+  "font-rubik": rubik.variable,
   "font-russo": russo.variable,
-  "font-roboto":roboto.variable
+  "font-roboto": roboto.variable,
 } as Record<string, string>;
