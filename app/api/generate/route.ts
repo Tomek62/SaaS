@@ -1,77 +1,66 @@
-import { Configuration, OpenAIApi } from "openai-edge";
-import { OpenAIStream, StreamingTextResponse } from "ai";
-import { kv } from "@vercel/kv";
-import { Ratelimit } from "@upstash/ratelimit";
+import { NextResponse } from "next/server";
+import { GoogleGenerativeAI } from "@google/generative-ai";
+import { log } from "console";
 
-const config = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-const openai = new OpenAIApi(config);
+const API_KEY = process.env.GEMINI_API_KEY as string;
+const GEMINI_MODEL = "gemini-1.5-flash"; // Modèle Gemini spécifique.
 
-export const runtime = "edge";
+export const runtime = "edge"; // Spécifie l'utilisation d'Edge Runtime.
 
-export async function POST(req: Request): Promise<Response> {
-  if (
-    process.env.NODE_ENV != "development" &&
-    process.env.KV_REST_API_URL &&
-    process.env.KV_REST_API_TOKEN
-  ) {
-    const ip = req.headers.get("x-forwarded-for");
-    const ratelimit = new Ratelimit({
-      redis: kv,
-      limiter: Ratelimit.slidingWindow(50, "1 d"),
-    });
-
-    const { success, limit, reset, remaining } = await ratelimit.limit(
-      `platforms_ratelimit_${ip}`,
+export async function POST(req: Request) {
+  if (!API_KEY) {
+    return NextResponse.json(
+      {
+        error:
+          "Missing GEMINI_API_KEY. Make sure to define it in your .env file.",
+      },
+      { status: 500 },
     );
-
-    if (!success) {
-      return new Response("You have reached your request limit for the day.", {
-        status: 429,
-        headers: {
-          "X-RateLimit-Limit": limit.toString(),
-          "X-RateLimit-Remaining": remaining.toString(),
-          "X-RateLimit-Reset": reset.toString(),
-        },
-      });
-    }
   }
 
-  let { prompt: content } = await req.json();
+  try {
+    const body = await req.json();
+    const { image, prompt } = body;
+    if (!image || !prompt) {
+      return NextResponse.json(
+        { error: "Both 'image' and 'prompt' are required." },
+        { status: 400 },
+      );
+    }
+    // console.log("image", image);
+    console.log("prompt", prompt);
 
-  // remove trailing slash,
-  // slice the content from the end to prioritize later characters
-  content = content.replace(/\/$/, "").slice(-5000);
+    // Initialisez GoogleGenerativeAI avec la clé API.
+    const genAI = new GoogleGenerativeAI(API_KEY);
 
-  const response = await openai.createChatCompletion({
-    model: "gpt-3.5-turbo",
-    messages: [
+    // Récupérez le modèle génératif Gemini.
+    const model = genAI.getGenerativeModel({
+      model: GEMINI_MODEL,
+    });
+
+    // Appelez l'API Gemini pour générer du contenu.
+    const cleanBase64 = image.replace(/^data:image\/\w+;base64,/, "");
+    const result = await model.generateContent([
       {
-        role: "system",
-        content:
-          "You are an AI writing assistant that continues existing text based on context from prior text. " +
-          "Give more weight/priority to the later characters than the beginning ones. " +
-          "Limit your response to no more than 200 characters, but make sure to construct complete sentences.",
-        // we're disabling markdown for now until we can figure out a way to stream markdown text with proper formatting: https://github.com/steven-tey/novel/discussions/7
-        // "Use Markdown formatting when appropriate.",
+        inlineData: {
+          mimeType: "image/jpeg",
+          data: cleanBase64,
+        },
       },
-      {
-        role: "user",
-        content,
-      },
-    ],
-    temperature: 0.7,
-    top_p: 1,
-    frequency_penalty: 0,
-    presence_penalty: 0,
-    stream: true,
-    n: 1,
-  });
-
-  // Convert the response into a friendly text-stream
-  const stream = OpenAIStream(response);
-
-  // Respond with the stream
-  return new StreamingTextResponse(stream);
+      { text: prompt },
+    ]);
+    if (result?.response?.candidates && result.response.candidates.length > 0) {
+      console.log("result", result.response.candidates[0].content.parts[0].text);
+      return NextResponse.json({ generatedText: result.response.candidates[0].content.parts[0].text });
+    } else {
+      console.log("No candidates found in the response.");
+    }
+    // Retournez le texte généré.
+  } catch (error) {
+    console.error("Error calling Gemini API:", error);
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 },
+    );
+  }
 }
