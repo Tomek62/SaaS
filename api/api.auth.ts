@@ -53,3 +53,43 @@ export const verifyEmail = async (verificationCode: string) => {
     }
   }
 };
+
+export const signIn = async (email: string, password: string) => {
+  try {
+    const response = await axios.post(`http://localhost:3001/auth/signin`, {
+      email,
+      password,
+    });
+
+    const { token, user } = response.data; 
+
+    // Stocker le token JWT dans le localStorage
+    localStorage.setItem('jwt_token', token);
+
+    console.log('User signed in:', user);
+    return { token, user };
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response) {
+      console.error('Error:', error.response.data.message);
+    } else {
+      console.error('Unknown error:', error);
+    }
+  }
+}
+export const signInRestaurant = async (email: string, password: string) => {
+  try {
+    const response = await axios.post(`http://localhost:3001/auth/signin-restaurant`, {
+      email,
+      password,
+    });
+
+    console.log('User signed in:', response.data);
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response) {
+      console.error('Error:', error.response.data.message);
+    } else {
+      console.error('Unknown error:', error);
+    }
+  }
+}
