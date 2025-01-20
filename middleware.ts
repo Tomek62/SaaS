@@ -39,18 +39,22 @@ export default async function middleware(req: NextRequest) {
   }`;
 
   // rewrites for app pages
-  if (hostname == `app.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`) {
+  if (hostname == `app.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}` || hostname == `app.localhost:3000`) {
     const session = await getToken({ req });
+    const role = session?.role;
+    const hasSite = session?.hasSite;
     if (!session && path !== "/login") {
       return NextResponse.redirect(new URL("/login", req.url));
-    } else if (session && path == "/login") {
+    } else if (session && !hasSite && role !== "RESTAURANTOWNER" && path == "/login") {
+      return NextResponse.redirect(new URL("/welcome", req.url));
+    }else if(session && hasSite && role !== "RESTAURANTOWNER" && path == "/login"){
       return NextResponse.redirect(new URL("/", req.url));
     }
     return NextResponse.rewrite(
       new URL(`/app${path === "/" ? "" : path}`, req.url),
     );
   }
-
+  
   // special case for `vercel.pub` domain
   if (hostname === "vercel.pub") {
     return NextResponse.redirect(
