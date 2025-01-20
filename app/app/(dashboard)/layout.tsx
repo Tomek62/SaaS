@@ -9,12 +9,12 @@ const title =
   "App FoodPoint";
 const description =
   "FoodPoint est un service pour les restaurateurs leur permettant de créer un site de commande en ligne et click&collect facilement, et en quelques minutes, pour développer leur business.";
-const image = "https://vercel.pub/thumbnail.png";
+const image = "./logo.png";
 
 export const metadata: Metadata = {
   title,
   description,
-  icons: ["https://vercel.pub/favicon.ico"],
+  icons: ["./favicon.ico"],
   openGraph: {
     title,
     description,
@@ -46,7 +46,7 @@ export default async function DashboardLayout({ children }: { children: ReactNod
           <Profile />
         </Suspense>
       </Nav>
-      <div className="min-h-screen dark:bg-black sm:pl-60">{children}</div>
+      <div className="min-h-screen bg-bgDashboard sm:pl-80 text-black">{children}</div>
     </div>
   );
 }

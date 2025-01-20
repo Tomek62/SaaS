@@ -13,27 +13,16 @@ export default function Overview() {
   return (
     <div className="flex max-w-screen-xl flex-col space-y-12 p-8">
       <div className="flex flex-col space-y-6">
-        <h1 className="font-cal text-3xl font-bold dark:text-white">
-          Overview
+        <h1 className="font-cal text-3xl font-bold">
+          Tableau de bord
         </h1>
-        <OverviewStats />
+        {/* <OverviewStats /> */}
         {/* <IphoneMockup
           children={<h1 className="text-3xl font-bold">Hello</h1>}
         /> */}
-        <CreateSiteButton>
+        {/* <CreateSiteButton>
             <CreateSiteModal />
-          </CreateSiteButton>
-      </div>
-
-      <div className="flex flex-col space-y-6">
-        <div className="flex items-center justify-between">
-          <h1 className="font-cal text-3xl font-bold dark:text-white">
-            Récentes commandes
-          </h1>
-          <Suspense fallback={null}>
-            <OverviewSitesCTA />
-          </Suspense>
-        </div>
+          </CreateSiteButton> */}
         <Suspense
           fallback={
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -48,7 +37,18 @@ export default function Overview() {
       </div>
 
       <div className="flex flex-col space-y-6">
-        <h1 className="font-cal text-3xl font-bold dark:text-white">
+        <div className="flex items-center justify-between">
+          <h1 className="font-cal text-3xl font-bold">
+            Récentes commandes
+          </h1>
+          <Suspense fallback={null}>
+            <OverviewSitesCTA />
+          </Suspense>
+        </div>
+      </div>
+
+      {/* <div className="flex flex-col space-y-6">
+        <h1 className="font-cal text-3xl font-bold">
           Recent Posts
         </h1>
         <Suspense
@@ -62,7 +62,7 @@ export default function Overview() {
         >
           <Posts limit={8} />
         </Suspense>
-      </div>
+      </div> */}
     </div>
   );
 }
