@@ -12,11 +12,16 @@ module.exports = {
     extend: {
       colors: {
         primary: "#1D4ED8", // Couleur principale
+        primaryBis:"#2684FF",
         secondary: "#000000", // Couleur secondaire
         textSecondary: "#4B5563", // Couleur des textes secondaires
         bgHeroPink: "#FFD6D6",
         bgSecondary: "#F9F8FE",
         bgCardApp: "#F5F5F5",
+        // Click&Collect App
+        // Dashboard
+        bgDashboard: "#F8F9FA",
+        
       },
       fontFamily: {
         primary: ["var(--font-rubik)"],
