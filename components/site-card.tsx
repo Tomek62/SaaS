@@ -23,7 +23,7 @@ export default async function SiteCard() {
 
   const url = `${site?.subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`;
   return site ? (
-    <div className="relative rounded-lg border border-stone-200 pb-10 shadow-md transition-all hover:shadow-xl dark:border-stone-700 dark:hover:border-white">
+    <div className="relative rounded-lg max-w-md border border-stone-200 pb-10 shadow-md transition-all hover:shadow-xl dark:border-stone-700 dark:hover:border-white">
       <Link
         href={`/site/${site?.id}`}
         className="flex flex-col overflow-hidden rounded-lg"
@@ -38,10 +38,10 @@ export default async function SiteCard() {
           blurDataURL={site?.imageBlurhash ?? placeholderBlurhash}
         />
         <div className="border-t border-stone-200 p-4 dark:border-stone-700">
-          <h3 className="my-0 truncate font-cal text-xl font-bold tracking-wide dark:text-white">
+          <h3 className="my-0 truncate font-cal text-xl font-bold tracking-wide">
             {site?.name}
           </h3>
-          <p className="mt-2 line-clamp-1 text-sm font-normal leading-snug text-stone-500 dark:text-stone-400">
+          <p className="mt-2 line-clamp-1 text-sm font-normal leading-snug text-stone-500 ">
             {site?.description}
           </p>
         </div>

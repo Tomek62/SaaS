@@ -1,5 +1,5 @@
 .spinner {
-  color: gray;
+  color: rgb(188, 48, 48);
   display: inline-block;
   position: relative;
   width: 70px;
@@ -23,7 +23,7 @@
 }
 @media (prefers-color-scheme: dark) {
   .spinner div:after {
-    background: white;
+    background: rgb(39, 36, 36);
   }
 }
 .spinner div:nth-child(1) {

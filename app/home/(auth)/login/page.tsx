@@ -4,27 +4,34 @@ import LoginButton from "./login-button";
 import { Suspense ,useState} from "react";
 import Nav from "../../sections/nav";
 import { useRouter } from "next/navigation";
-import { signIn } from "next-auth/react";
 import Link from "next/link";
+import { signIn} from "@/api/api.auth";
+import { toast } from "sonner";
 
 export default function LoginPage() {
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false); 
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const result = await signIn("credentials", {
-      redirect: false,
-      email,
-      password,
-    });
-
-    if (result?.error) {
-      setError(result.error);
-    } else {
-      router.push("/dashboard"); // Redirection après connexion réussie
+    setLoading(true);
+  
+    try {
+      await signIn(email, password);
+      toast.success('Connexion réussie ! ');
+      setEmail('');
+      setPassword('');
+  
+      // Optionally redirect to a verification page to input the code
+      router.push('http://app.localhost:3000');
+    } catch (error) {
+      toast.error('Something went wrong.');
+    } finally {
+      setLoading(false);
     }
   };
   return (
@@ -65,9 +72,9 @@ export default function LoginPage() {
                 required
               />
             </div>
-            {error && (
+            {/* {error && (
               <p className="text-red-500 text-sm mb-4">Email ou mot de passe faux.</p>
-            )}
+            )} */}
             <button
               type="submit"
               className="w-full px-4 py-2 font-primary font-semibold text-white bg-primary hover:bg-primary-dark rounded-md"

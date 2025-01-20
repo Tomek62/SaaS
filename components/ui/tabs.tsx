@@ -1,15 +1,15 @@
 "use client";
- 
+
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
- 
+
 type Tab = {
   title: string;
   value: string;
   content?: string | React.ReactNode | any;
 };
- 
+
 export const Tabs = ({
   tabs: propTabs,
   containerClassName,
@@ -20,58 +20,48 @@ export const Tabs = ({
   containerClassName?: string;
   activeTabClassName?: string;
   tabClassName?: string;
-  contentClassName?: string;
 }) => {
   const [active, setActive] = useState<Tab>(propTabs[0]);
-  const [tabs, setTabs] = useState<Tab[]>(propTabs);
- 
+  
   const moveSelectedTabToTop = (idx: number) => {
     const newTabs = [...propTabs];
     const selectedTab = newTabs.splice(idx, 1);
     newTabs.unshift(selectedTab[0]);
-    setTabs(newTabs);
-    setActive(newTabs[0]);
+    setActive(newTabs[0]); // Met à jour l'onglet actif
   };
- 
-  const [hovering, setHovering] = useState(false);
- 
+
   return (
     <>
       <div
         className={cn(
-          "flex flex-row items-center justify-start [perspective:1000px] relative overflow-auto sm:overflow-visible no-visible-scrollbar max-w-full w-full",
+          "flex flex-row items-center justify-start [perspective:1000px] relative overflow-auto sm:overflow-visible no-visible-scrollbar max-w-full w-full space-x-3 mt-2 mb-4",
           containerClassName
         )}
       >
         {propTabs.map((tab, idx) => (
           <button
             key={tab.title}
-            onClick={() => {
-              moveSelectedTabToTop(idx);
-            }}
-            onMouseEnter={() => setHovering(true)}
-            onMouseLeave={() => setHovering(false)}
-            className={cn("relative px-4 py-2 rounded-full", tabClassName)}
-            style={{
-              transformStyle: "preserve-3d",
-            }}
+            onClick={() => moveSelectedTabToTop(idx)}
+            className={cn(
+              "relative px-4 py-2 rounded-full transition-colors duration-300 ease-in-out",
+              active.value === tab.value ? "bg-black text-white" : "bg-bgCardApp text-black"
+            )}
           >
             {active.value === tab.value && (
               <motion.div
                 layoutId="clickedbutton"
                 transition={{ type: "spring", bounce: 0.3, duration: 0.6 }}
-                className={cn(
-                  "absolute inset-0 bg-gray-200 dark:bg-zinc-800 rounded-full ",
-                  activeTabClassName
-                )}
+                className="absolute inset-0 bg-black rounded-full opacity-20"
               />
             )}
- 
-            <span className="relative block text-black dark:text-white">
+            <span className="relative block font-bold">
               {tab.title}
             </span>
           </button>
         ))}
+      </div>
+      <div className="mt-8">
+        {active.content}
       </div>
     </>
   );

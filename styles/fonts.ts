@@ -33,7 +33,7 @@ export const rubik = Rubik({
 });
 export const roboto = Roboto({
   variable: "--font-roboto",
-  weight: ["400", "500", "700"],
+  weight: ["400", "500", "700", "900"],
   display: "swap",
   subsets: ["latin"],
 });
