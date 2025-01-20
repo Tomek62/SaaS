@@ -11,6 +11,9 @@ importers:
       '@flaticon/flaticon-uicons':
         specifier: ^3.2.1
         version: 3.2.1
+      '@google/generative-ai':
+        specifier: ^0.21.0
+        version: 0.21.0
       '@headlessui/react':
         specifier: ^2.0.4
         version: 2.0.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -327,6 +330,10 @@ packages:
 
   '@floating-ui/utils@0.2.2':
     resolution: {integrity: sha512-J4yDIIthosAsRZ5CPYP/jQvUAQtlZTTD/4suA08/FEnlxqW3sKS9iAhgsa9VYLZ6vDHn/ixJgIqRQPotoBjxIw==}
+
+  '@google/generative-ai@0.21.0':
+    resolution: {integrity: sha512-7XhUbtnlkSEZK15kN3t+tzIMxsbKm/dSkKBFalj+20NvPKe1kBY7mR2P7vuijEn+f06z5+A8bVGKO0v39cr6Wg==}
+    engines: {node: '>=18.0.0'}
 
   '@headlessui/react@1.7.17':
     resolution: {integrity: sha512-4am+tzvkqDSSgiwrsEpGWqgGo9dz8qU5M3znCkC4PgkpY4HcCZzEDEvozltGGGHIKl9jbXbZPSH5TWn4sWJdow==}
@@ -4804,6 +4811,8 @@ snapshots:
   '@floating-ui/utils@0.1.6': {}
 
   '@floating-ui/utils@0.2.2': {}
+
+  '@google/generative-ai@0.21.0': {}
 
   '@headlessui/react@1.7.17(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
