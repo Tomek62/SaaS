@@ -38,7 +38,12 @@ export const authOptions: NextAuthOptions = {
           throw new Error("Invalid password");
         }
 
-        return { id: user.id, name: user.name, email: user.email };
+        return {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          role: user.role,
+        };
       },
     }),
     GitHubProvider({
@@ -58,6 +63,7 @@ export const authOptions: NextAuthOptions = {
           gh_username: profile.login,
           email: profile.email,
           image: profile.avatar_url,
+          emailVerified: profile.email_verified || false,
         };
       },
     }),
@@ -97,20 +103,27 @@ export const authOptions: NextAuthOptions = {
     },
   },
   callbacks: {
-    jwt: async ({ token, user }) => {
+    jwt: async ({ token, user }: { token: any; user?: any }) => {
       if (user) {
         token.user = user;
+        token.role = user.role;
+        // Vérifiez si l'utilisateur a un site via Prisma
+      const userHasSite = await prisma.site.findFirst({
+        where: { userId: user.id },
+      });
+
+      token.hasSite = !!userHasSite; 
       }
       return token;
     },
-    session: async ({ session, token }) => {
+    session: async ({ session, token }: { session: any; token: any }) => {
       session.user = {
         ...session.user,
-        // @ts-expect-error
         id: token.sub,
-        // @ts-expect-error
         username: token?.user?.username || token?.user?.gh_username,
+        role: token?.user?.role,
       };
+      session.hasSite = token.hasSite;
       return session;
     },
   },
