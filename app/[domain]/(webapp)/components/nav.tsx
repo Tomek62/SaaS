@@ -14,36 +14,30 @@ export default function Nav() {
       name: "Home",
       href: `/`,
       segment: null,
-      icon:<Home size={20} />,
+      icon:<Home className="stroke-black" />,
     },
     {
       name: "Food",
       href: `/food`,
       segment: "food",
-      icon: <UtensilsCrossed size={20} />,
+      icon: <UtensilsCrossed className="stroke-black" />,
     },
     {
       name: "Panier",
       href: `/order`,
       segment: "order",
-      icon:<ShoppingCart />
+      icon:<ShoppingCart className="stroke-black"/>
     },
-    // {
-    //   name: "Fidélité",
-    //   href: `/fidelity`,
-    //   segment: "fidelity",
-    //   icon:<BadgeEuro />
-    // },
     {
-      name: "Account",
-      href: `/account`,
-      segment: "account",
-      icon: <User />
+      name: "Profil",
+      href: `/profile`,
+      segment: "profile",
+      icon: <User className="stroke-black"/>
     }
   ];
 
   return (
-    <div className="btm-nav bg-white">
+    <div className="btm-nav bg-bgCardApp">
       {navItems.map((item) => (
         <Link key={item.name} href={item.href}>
           <button className={cn(

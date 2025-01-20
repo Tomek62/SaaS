@@ -5,26 +5,21 @@ import { Tabs } from "@/components/ui/tabs";
 export default function Food() {
   const tabs = [
     {
-      title: "Produits",
-      value: "product",
+      title: "Burgers",
+      value: "burgers",
       content: (
-        <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-purple-700 to-violet-900">
-          <p>Product Tab</p>
-        </div>
+        <FoodCards /> 
       ),
     },
     {
-      title: "Menus",
+      title: "Sandwichs",
       value: "services",
       content: (
-        <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-purple-700 to-violet-900">
-          <p>Services tab</p>
-        
-        </div>
+        <FoodCards />
       ),
     },
     {
-      title: "Boissons",
+      title: "Salades",
       value: "playground",
       content: (
         <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-purple-700 to-violet-900">
@@ -34,7 +29,7 @@ export default function Food() {
       ),
     },
     {
-      title: "Content",
+      title: "Burritos",
       value: "content",
       content: (
         <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-purple-700 to-violet-900">
@@ -43,8 +38,18 @@ export default function Food() {
       ),
     },
     {
-      title: "Random",
-      value: "random",
+      title: "Boissons",
+      value: "boissons",
+      content: (
+        <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-purple-700 to-violet-900">
+          <p>Random tab</p>
+
+        </div>
+      ),
+    },
+    {
+      title: "Sauces",
+      value: "sauces",
       content: (
         <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-purple-700 to-violet-900">
           <p>Random tab</p>
@@ -54,12 +59,10 @@ export default function Food() {
     },
   ];
     return (
-      <div className="flex flex-col space-y-2  text-center">
-        <h1 className="text-3xl font-bold text-gray-800">Notre carte</h1>
-        <p>Découvrez notre carte et régalez vous !</p>
+      <div className="flex flex-col">
+        <h1 className="text-xl  font-appPrimary">Faites votre choix !</h1>
         <div>
         <Tabs tabs={tabs} containerClassName="my-4"/>
-        <FoodCards />
         </div>
       </div>
     );

@@ -5,8 +5,8 @@ import FoodCard from "../components/main-food-card";
 
 const foodItems = [
   {
-    id: "les-burgers",
-    name: "LES BURGERS",
+    id: "le-savoyard",
+    name: "Le Savoyard",
     image:
       "https://www.google.fr/imgres?q=image%20burger&imgurl=https%3A%2F%2Fget-picto.com%2Fwp-content%2Fuploads%2F2023%2F03%2Fburger-picto.webp&imgrefurl=https%3A%2F%2Fget-picto.com%2Fgratuit%2Fburger-picto%2F&docid=CKt64qVS988h1M&tbnid=8uf9q0RJOadzoM&vet=12ahUKEwj1pc-3w_mGAxWgcKQEHWKNAHoQM3oECB0QAA..i&w=1600&h=1600&hcb=2&ved=2ahUKEwj1pc-3w_mGAxWgcKQEHWKNAHoQM3oECB0QAA",
   },
