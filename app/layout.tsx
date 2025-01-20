@@ -9,24 +9,18 @@ const title =
   "FoodPoint - L'application pour créer votre site de commande en quelques clics.";
 const description =
   "FoodPoint est un service pour les restaurateurs leur permettant de créer un site de commande en ligne et click&collect facilement, et en quelques minutes, pour développer leur business.";
-const image = "https://vercel.pub/thumbnail.png";
+const image = "./logo.png";
 
 export const metadata: Metadata = {
   title,
   description,
-  icons: ["https://vercel.pub/favicon.ico"],
+  icons: ["./favicon.ico"],
   openGraph: {
     title,
     description,
     images: [image],
   },
-  twitter: {
-    card: "summary_large_image",
-    title,
-    description,
-    images: [image],
-    creator: "@vercel",
-  },
+  
   metadataBase: new URL("https://vercel.pub"),
 };
 
